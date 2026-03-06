@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Climate Air Solutions — Lead Response Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1B6B93;
+      --primary-light: rgba(27, 107, 147, 0.12);
+      --primary-dark: #124A66;
+      --accent: #D4880F;
+      --accent-light: rgba(212, 136, 15, 0.12);
+      --bg: #0B0F1A;
+      --bg-card: #141926;
+      --bg-card-hover: #1A2035;
+      --bg-elevated: #1E2538;
+      --text: #F1F3F7;
+      --text-secondary: #8B95AD;
+      --text-tertiary: #525E78;
+      --border: rgba(255,255,255,0.06);
+      --border-subtle: rgba(255,255,255,0.03);
+      --glow: rgba(27, 107, 147, 0.08);
+      --radius: 16px;
+      --shadow-card: 0 2px 8px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.04);
+      --shadow-hover: 0 8px 24px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.06);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ── Accent Strip ── */
+    .accent-strip {
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+    }
+
+    /* ── Header Section ── */
+    .header-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 56px 32px 0;
+      text-align: center;
+    }
+
+    .header-prepared {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .header-section h1 {
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 14px;
+      letter-spacing: -0.03em;
+    }
+
+    .header-section .subtitle {
+      font-size: 17px;
+      color: var(--text-secondary);
+      max-width: 540px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── Scenario ── */
+    .scenario-section {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 36px 32px 0;
+    }
+
+    .scenario {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 26px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .scenario-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .scenario p {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .scenario strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ── Contrast / Gap ── */
+    .contrast-section {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 28px 32px 0;
+    }
+
+    .contrast {
+      display: flex;
+      gap: 16px;
+    }
+
+    .contrast-card {
+      flex: 1;
+      border-radius: 12px;
+      padding: 20px 22px;
+      border: 1px solid var(--border);
+    }
+
+    .contrast-card--before {
+      background: rgba(239, 68, 68, 0.04);
+      border-color: rgba(239, 68, 68, 0.12);
+    }
+
+    .contrast-card--after {
+      background: rgba(34, 197, 94, 0.04);
+      border-color: rgba(34, 197, 94, 0.12);
+    }
+
+    .contrast-card-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+
+    .contrast-card--before .contrast-card-label {
+      color: #F87171;
+    }
+
+    .contrast-card--after .contrast-card-label {
+      color: #4ADE80;
+    }
+
+    .contrast-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .contrast-card li {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      padding: 4px 0;
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .contrast-card--before li::before {
+      content: '×';
+      position: absolute;
+      left: 0;
+      color: #F87171;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .contrast-card--after li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #4ADE80;
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .contrast { flex-direction: column; }
+      .contrast-section { padding: 24px 20px 0; }
+    }
+
+    /* ── Timeline ── */
+    .timeline-section {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 48px 32px 0;
+    }
+
+    .timeline-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-tertiary);
+      margin-bottom: 32px;
+    }
+
+    /* Vertical timeline track */
+    .timeline-track {
+      position: relative;
+      padding-left: 56px;
+    }
+
+    /* Vertical connecting line */
+    .timeline-track::before {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .t-step {
+      position: relative;
+      padding-bottom: 32px;
+    }
+
+    .t-step:last-child {
+      padding-bottom: 0;
+    }
+
+    /* Node — sits on the vertical line */
+    .t-node {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      left: -56px;
+      top: 0;
+      z-index: 2;
+    }
+
+    .t-node-inner {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--primary);
+      opacity: 0.5;
+    }
+
+    .t-node-start {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px var(--glow), 0 0 20px var(--glow);
+    }
+
+    .t-node-start .t-node-inner {
+      opacity: 1;
+      width: 14px;
+      height: 14px;
+    }
+
+    .t-node-end {
+      border-color: var(--primary);
+      background: var(--primary);
+      box-shadow: 0 0 0 4px var(--glow), 0 0 20px var(--glow);
+    }
+
+    .t-node-end .t-node-inner {
+      background: transparent;
+      width: auto;
+      height: auto;
+      opacity: 1;
+    }
+
+    .t-node-end .t-node-inner::after {
+      content: '';
+      display: block;
+      width: 8px;
+      height: 5px;
+      border-left: 2.5px solid #fff;
+      border-bottom: 2.5px solid #fff;
+      transform: rotate(-45deg);
+      margin-top: -1px;
+    }
+
+    .t-time {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.02em;
+      margin-bottom: 10px;
+    }
+
+    /* Card */
+    .t-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      box-shadow: var(--shadow-card);
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    .t-card:hover {
+      background: var(--bg-card-hover);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .t-channel {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .t-channel-sms { background: rgba(5, 150, 105, 0.12); color: #34D399; }
+    .t-channel-email { background: rgba(37, 99, 235, 0.12); color: #60A5FA; }
+    .t-channel-inquiry { background: rgba(212, 136, 15, 0.12); color: var(--accent); }
+    .t-channel-multi { background: rgba(234, 88, 12, 0.12); color: #FB923C; }
+
+    .t-channel svg {
+      width: 10px;
+      height: 10px;
+      flex-shrink: 0;
+    }
+
+    .t-card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .t-card p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* SMS Bubble - dark theme */
+    .sms-label {
+      font-size: 9px;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 12px;
+      margin-bottom: 4px;
+    }
+
+    .sms-bubble {
+      padding: 10px 14px;
+      background: var(--bg-elevated);
+      border-radius: 12px 12px 12px 4px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      border: 1px solid var(--border);
+    }
+
+    /* Email preview - dark theme */
+    .email-preview {
+      margin-top: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .email-preview-header {
+      background: rgba(255,255,255,0.02);
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .email-preview-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    .email-preview-from {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .email-preview-subject {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      margin-left: auto;
+    }
+
+    .email-preview-body {
+      padding: 10px 12px;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* ── Result Section ── */
+    .result-section {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 48px 32px 0;
+    }
+
+    .result {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      color: #FFFFFF;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    }
+
+    .result h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .result p {
+      font-size: 14.5px;
+      line-height: 1.6;
+      opacity: 0.88;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .result-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .result-stat { text-align: center; }
+
+    .result-stat .stat-number {
+      font-size: 26px;
+      font-weight: 800;
+      display: block;
+      letter-spacing: -0.02em;
+    }
+
+    .result-stat .stat-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      opacity: 0.6;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    /* ── Bridge ── */
+    .bridge-section {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 32px 32px 0;
+      text-align: center;
+    }
+
+    .bridge-section p {
+      font-size: 14px;
+      color: var(--text-tertiary);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 32px 0 56px;
+      font-size: 12px;
+      color: var(--text-tertiary);
+    }
+
+    .footer strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 600px) {
+      .header-section { padding: 40px 20px 0; }
+      .header-section h1 { font-size: 28px; }
+      .header-section .subtitle { font-size: 15px; }
+
+      .scenario-section { padding: 28px 20px 0; }
+      .timeline-section { padding: 36px 20px 0; }
+
+      .timeline-track { padding-left: 48px; }
+      .timeline-track::before { left: 15px; }
+      .t-node { left: -48px; width: 32px; height: 32px; }
+      .t-node-inner { width: 10px; height: 10px; }
+      .t-node-start .t-node-inner { width: 12px; height: 12px; }
+      .t-step { padding-bottom: 24px; }
+
+      .t-card { padding: 16px 18px; }
+      .t-card h3 { font-size: 14px; }
+      .t-card p { font-size: 12px; }
+
+      .result-section { padding: 36px 20px 0; }
+      .result { padding: 28px 20px; }
+      .result-stats { gap: 24px; }
+      .result-stat .stat-number { font-size: 22px; }
+    }
+
+    /* ── Print ── */
+    @media print {
+      body { background: white; color: #111; }
+      .bg, .bg-card { background: white; }
+      .t-card { border: 1px solid #ddd; background: white; }
+      .t-card h3, .t-card p { color: #333; }
+      .result { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="accent-strip"></div>
+
+  <!-- Header -->
+  <div class="header-section">
+    <div class="header-prepared">Prepared for Richard at Climate Air Solutions</div>
+    <h1>What Your Leads Would&nbsp;Experience</h1>
+    <p class="subtitle">Here's what an HVAC inquiry looks like when every lead gets a response before they have time to call someone else.</p>
+  </div>
+
+  <!-- Scenario -->
+  <div class="scenario-section">
+    <div class="scenario">
+      <div class="scenario-label">The Scenario</div>
+      <p>A homeowner's AC stops working on a 105-degree afternoon. They search online, find <strong>Climate Air Solutions</strong>, and submit an inquiry. Here's what happens next — without anyone on your team needing to lift a finger.</p>
+    </div>
+  </div>
+
+  <!-- Contrast: The Gap -->
+  <div class="contrast-section">
+    <div class="contrast">
+      <div class="contrast-card contrast-card--before">
+        <div class="contrast-card-label">What usually happens</div>
+        <ul>
+          
+          <li>Lead comes in while your tech is under a unit</li>
+          
+          <li>Hours pass before someone checks the inbox</li>
+          
+          <li>Homeowner already called two other companies</li>
+          
+          <li>No follow-up if they don't book immediately</li>
+          
+          <li>Leads from nights and weekends go cold</li>
+          
+        </ul>
+      </div>
+      <div class="contrast-card contrast-card--after">
+        <div class="contrast-card-label">With this system</div>
+        <ul>
+          
+          <li>Every lead gets a response in under 60 seconds</li>
+          
+          <li>Automatic follow-up sequence over 4 days</li>
+          
+          <li>They hear from you before they finish Googling</li>
+          
+          <li>8 touchpoints — text and email — no manual work</li>
+          
+          <li>Runs 24/7 including nights, weekends, holidays</li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="timeline-section">
+    <div class="timeline-label">Here's exactly what they'd get</div>
+    <div class="timeline-track">
+      
+      <div class="t-step">
+        <div class="t-node t-node-start">
+          <div class="t-node-inner"></div>
+        </div>
+        <div class="t-time">Minute 0</div>
+        <div class="t-card">
+          <span class="t-channel t-channel-inquiry">
+            
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+            
+            Inbound
+          </span>
+          <h3>Lead Comes In</h3>
+          <p>Homeowner submits an inquiry through your website, Google Business profile, or calls your number. Right now, this is the moment most HVAC companies start losing the job — because nobody responds fast enough.</p>
+          
+          
+        </div>
+      </div>
+      
+      <div class="t-step">
+        <div class="t-node ">
+          <div class="t-node-inner"></div>
+        </div>
+        <div class="t-time">Under 60 seconds</div>
+        <div class="t-card">
+          <span class="t-channel t-channel-sms">
+            
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            
+            Text
+          </span>
+          <h3>Instant Acknowledgment</h3>
+          <p>Before they even think about calling someone else, they hear from you. When a homeowner's AC is down in July, they're not patient — they go with whoever responds first. The first company to reply wins 78% of the time.</p>
+          
+          <div class="sms-label">What they see</div>
+          <div class="sms-bubble">Hey — this is Climate Air Solutions. Got your request, a tech is reviewing the details now. We'll get back to you shortly with next steps.</div>
+          
+          
+        </div>
+      </div>
+      
+      <div class="t-step">
+        <div class="t-node ">
+          <div class="t-node-inner"></div>
+        </div>
+        <div class="t-time">2 minutes</div>
+        <div class="t-card">
+          <span class="t-channel t-channel-email">
+            
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            
+            Email
+          </span>
+          <h3>Confirmation + Direct Booking</h3>
+          <p>A professional email with a direct link to book. No phone tag, no hold music, no back-and-forth. They pick a time that works and it's locked in.</p>
+          
+          
+          <div class="email-preview">
+            <div class="email-preview-header">
+              <div class="email-preview-dot"></div>
+              <span class="email-preview-from">Climate Air Solutions</span>
+              <span class="email-preview-subject">Your service request with Climate Air Solutions</span>
+            </div>
+            <div class="email-preview-body">Thanks for reaching out — we've got your request and a tech is reviewing the details. If you'd like to get ahead of it, you can lock in an appointment directly below. We have openings this week and we'll work around your schedule.</div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="t-step">
+        <div class="t-node ">
+          <div class="t-node-inner"></div>
+        </div>
+        <div class="t-time">5 minutes</div>
+        <div class="t-card">
+          <span class="t-channel t-channel-sms">
+            
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            
+            Text
+          </span>
+          <h3>Availability Follow-Up</h3>
+          <p>A quick text with real availability. This is where most leads convert — making it easy to say yes while their house is still hot.</p>
+          
+          <div class="sms-label">What they see</div>
+          <div class="sms-bubble">We've got openings this week in Jacksonville, FL — want me to hold a slot for you? You can book directly here →</div>
+          
+          
+        </div>
+      </div>
+      
+      <div class="t-step">
+        <div class="t-node ">
+          <div class="t-node-inner"></div>
+        </div>
+        <div class="t-time">30 minutes</div>
+        <div class="t-card">
+          <span class="t-channel t-channel-sms">
+            
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            
+            Text
+          </span>
+          <h3>Gentle Nudge</h3>
+          <p>Life gets busy. This text catches the ones who meant to book but got pulled away. Friendly, no pressure — just keeping the door open.</p>
+          
+          <div class="sms-label">What they see</div>
+          <div class="sms-bubble">Hey — just making sure this didn't get buried. Still need that AC looked at? Happy to answer any questions.</div>
+          
+          
+        </div>
+      </div>
+      
+      <div class="t-step">
+        <div class="t-node ">
+          <div class="t-node-inner"></div>
+        </div>
+        <div class="t-time">Day 1</div>
+        <div class="t-card">
+          <span class="t-channel t-channel-email">
+            
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            
+            Email
+          </span>
+          <h3>Trust Builder</h3>
+          <p>By now they've probably reached out to 2-3 companies. This email gives them a reason to come back to Climate Air Solutions — real proof, not just promises.</p>
+          
+          
+          <div class="email-preview">
+            <div class="email-preview-header">
+              <div class="email-preview-dot"></div>
+              <span class="email-preview-from">Climate Air Solutions</span>
+              <span class="email-preview-subject">Quick note from Climate Air Solutions</span>
+            </div>
+            <div class="email-preview-body">While your request is still open — here's what our customers in Jacksonville, FL say most often: the tech showed up on time, the pricing was upfront, and the fix actually held. We've been doing this for years and we treat every call like it's our own home. If you're still comparing options, we're happy to earn the shot.</div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="t-step">
+        <div class="t-node ">
+          <div class="t-node-inner"></div>
+        </div>
+        <div class="t-time">Day 2</div>
+        <div class="t-card">
+          <span class="t-channel t-channel-email">
+            
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            
+            Email
+          </span>
+          <h3>Helpful Follow-Up</h3>
+          <p>A genuinely useful tip that positions Climate Air Solutions as the expert — not just another company asking for the job. This is the kind of email people actually appreciate getting.</p>
+          
+          
+          <div class="email-preview">
+            <div class="email-preview-header">
+              <div class="email-preview-dot"></div>
+              <span class="email-preview-from">Climate Air Solutions</span>
+              <span class="email-preview-subject">Worth checking before your appointment</span>
+            </div>
+            <div class="email-preview-body">Quick thing while your AC is on your mind — check your air filter. If it's been more than 90 days, it's probably clogged, and a dirty filter makes the system work twice as hard. That can turn a $150 fix into a $600 repair. Takes 30 seconds to check. Either way, we're here when you're ready.</div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="t-step">
+        <div class="t-node t-node-end">
+          <div class="t-node-inner"></div>
+        </div>
+        <div class="t-time">Day 4</div>
+        <div class="t-card">
+          <span class="t-channel t-channel-multi">
+            
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            
+            Text + Email
+          </span>
+          <h3>Final Touchpoint</h3>
+          <p>One last check-in. Clear, respectful, easy to act on. After this, the sequence stops. No spam, no guilt trips — just a clean close. The leads who didn't book? They still remember Climate Air Solutions when the next breakdown happens.</p>
+          
+          <div class="sms-label">What they see</div>
+          <div class="sms-bubble">Hey — just closing the loop on your AC request. If you still need help, here's a direct link to book with Climate Air Solutions →</div>
+          
+          
+          <div class="email-preview">
+            <div class="email-preview-header">
+              <div class="email-preview-dot"></div>
+              <span class="email-preview-from">Climate Air Solutions</span>
+              <span class="email-preview-subject">Closing the loop</span>
+            </div>
+            <div class="email-preview-body">Last follow-up on this — if you're still looking to get your AC taken care of, you can book directly below. We've got openings this week. If you've already handled it, no worries at all. We're here if anything comes up down the road.</div>
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Result -->
+  <div class="result-section">
+    <div class="result">
+      <h2>The Bottom Line</h2>
+      <p>You're not getting more leads — you're getting more out of the leads you already have. The ones that used to go cold because nobody got back to them fast enough? They're booking service calls now. No new ad spend. No extra staff. Just fewer leads slipping through the cracks.</p>
+      <div class="result-stats">
+        <div class="result-stat">
+          <span class="stat-number">&lt; 60s</span>
+          <span class="stat-label">First Response</span>
+        </div>
+        <div class="result-stat">
+          <span class="stat-number">8 touches</span>
+          <span class="stat-label">Over 4 Days</span>
+        </div>
+        <div class="result-stat">
+          <span class="stat-number">0</span>
+          <span class="stat-label">Tasks Added to Your Plate</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bridge -->
+  <div class="bridge-section">
+    <p>This is a general version. The system we'd build for Climate Air Solutions would be tuned to your service area, your dispatch schedule, and the way you already run things.</p>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    Prepared by <strong>Advero Solutions</strong>
+  </div>
+
+</body>
+</html>
