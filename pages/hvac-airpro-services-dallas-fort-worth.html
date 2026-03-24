@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AirPro Services Inquiry Response Flow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      line-height: 1.6;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .company-name {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1e40af;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: #666;
+      font-weight: 400;
+    }
+
+    .scenario {
+      background: #f8f9fa;
+      border-left: 4px solid #1e40af;
+      padding: 16px 20px;
+      margin: 30px 0;
+      font-size: 15px;
+      color: #444;
+    }
+
+    .scenario strong {
+      color: #1e40af;
+      font-weight: 600;
+    }
+
+    /* Gap Comparison Section */
+    .gap-section {
+      margin: 40px 0;
+    }
+
+    .gap-title {
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .gap-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .gap-comparison {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    .gap-column {
+      padding: 24px;
+      border-radius: 8px;
+      border: 2px solid #e0e0e0;
+    }
+
+    .gap-column--left {
+      background: #fef2f2;
+      border-color: #fecaca;
+    }
+
+    .gap-column--right {
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+    }
+
+    .gap-column-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .gap-column--left .gap-column-title {
+      color: #dc2626;
+    }
+
+    .gap-column--right .gap-column-title {
+      color: #16a34a;
+    }
+
+    .gap-list {
+      list-style: none;
+    }
+
+    .gap-list li {
+      padding: 8px 0;
+      padding-left: 24px;
+      position: relative;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .gap-list li:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 14px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .gap-column--left .gap-list li:before {
+      background: #dc2626;
+    }
+
+    .gap-column--right .gap-list li:before {
+      background: #16a34a;
+    }
+
+    /* Timeline Section */
+    .timeline-section {
+      margin: 50px 0;
+    }
+
+    .timeline-title {
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 40px;
+      color: #333;
+    }
+
+    .timeline {
+      position: relative;
+      padding: 0 20px;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #e0e0e0;
+      transform: translateX(-50%);
+    }
+
+    @media (max-width: 768px) {
+      .timeline-line {
+        left: 30px;
+      }
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    @media (max-width: 768px) {
+      .timeline-item:nth-child(even) {
+        flex-direction: row;
+      }
+    }
+
+    .timeline-marker {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 16px;
+      background: #1e40af;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px #1e40af;
+      z-index: 1;
+    }
+
+    @media (max-width: 768px) {
+      .timeline-marker {
+        left: 30px;
+      }
+    }
+
+    .timeline-content {
+      flex: 1;
+      padding: 16px 24px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      margin: 0 40px;
+      border: 1px solid #e0e0e0;
+    }
+
+    @media (max-width: 768px) {
+      .timeline-content {
+        margin: 0 0 0 60px;
+      }
+    }
+
+    .timeline-time {
+      font-size: 12px;
+      font-weight: 600;
+      color: #1e40af;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .timeline-title-text {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 6px;
+    }
+
+    .timeline-description {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.4;
+    }
+
+    .timeline-item--highlight {
+      transform: scale(1.02);
+    }
+
+    .timeline-item--highlight .timeline-marker {
+      width: 20px;
+      height: 20px;
+      background: #dc2626;
+      box-shadow: 0 0 0 2px #dc2626;
+    }
+
+    .timeline-item--highlight .timeline-content {
+      background: rgba(220, 38, 38, 0.08);
+      border-color: #dc2626;
+    }
+
+    .timeline-item--highlight .timeline-time {
+      color: #dc2626;
+    }
+
+    /* Message Preview Styles */
+    .message-preview {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .message-preview-header {
+      font-size: 11px;
+      font-weight: 600;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .message-preview-content {
+      font-size: 13px;
+      line-height: 1.5;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 10px 12px;
+    }
+
+    .message-preview-text {
+      background: #f0f4f8;
+      border-color: #d1d9e6;
+      color: #334155;
+      font-style: italic;
+    }
+
+    .message-preview-email {
+      background: #fafafa;
+      border-color: #e0e0e0;
+    }
+
+    .email-subject {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 6px;
+      font-size: 12px;
+    }
+
+    .email-body {
+      color: #555;
+      font-style: italic;
+    }
+
+    .message-preview-confirm {
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+      color: #16a34a;
+      font-weight: 500;
+    }
+
+    /* Reality Check Section */
+    .reality-section {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 30px 32px;
+      background: linear-gradient(135deg, #fef3c7 0%, #fef9e7 100%);
+      border-radius: 12px;
+      border: 2px solid #fbbf24;
+    }
+
+    .reality-title {
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 24px;
+      color: #92400e;
+    }
+
+    .reality-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .reality-item {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .reality-bullet {
+      color: #f59e0b;
+      font-weight: 600;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .reality-text {
+      font-size: 15px;
+      color: #78350f;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid #e0e0e0;
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 14px;
+      color: #666;
+      font-style: italic;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        padding: 20px;
+      }
+      .gap-comparison {
+        break-inside: avoid;
+      }
+      .timeline-item {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <h1 class="company-name">AirPro Services Inquiry Response Flow</h1>
+    <p class="subtitle">Inquiry Response Flow</p>
+  </div>
+
+  <!-- Scenario -->
+  <div class="scenario">
+    It's 95° on a Saturday. A homeowner's AC stops working. They find AirPro Services online and submit an inquiry. <strong>78% of the time, they hire whoever responds first.</strong>
+  </div>
+
+  <!-- Gap Comparison -->
+  <div class="gap-section">
+    <h2 class="gap-title">The Gap in Most HVAC Companies</h2>
+
+    <div class="gap-comparison">
+      <div class="gap-column gap-column--left">
+        <h3 class="gap-column-title">When It Depends on Your Team</h3>
+        <ul class="gap-list">
+          
+          <li>Saturday inquiry → Monday response = Lost to competitor</li>
+          
+          <li>After 5 minutes, conversion drops 80%</li>
+          
+          <li>Tech in attic = 3 hours before anyone replies</li>
+          
+          <li>10 PM emergency? Waits until morning</li>
+          
+          <li>Average response time: 48 hours</li>
+          
+          <li>30% of leads never get a response at all</li>
+          
+        </ul>
+      </div>
+
+      <div class="gap-column gap-column--right">
+        <h3 class="gap-column-title">When It Runs on Its Own</h3>
+        <ul class="gap-list">
+          
+          <li>Response in under 60 seconds, every time</li>
+          
+          <li>Catches them while they're still searching</li>
+          
+          <li>Works while your team is on jobs</li>
+          
+          <li>2 AM emergency? Already handled</li>
+          
+          <li>8 touchpoints over 4 days automatically</li>
+          
+          <li>100% of leads get followed up</li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="timeline-section">
+    <h2 class="timeline-title">From First Contact to Scheduled Appointment</h2>
+
+    <div class="timeline">
+      <div class="timeline-line"></div>
+
+      
+      <div class="timeline-item ">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="timeline-time">Minute 0</div>
+          <div class="timeline-title-text">Homeowner Submits Inquiry</div>
+          <div class="timeline-description">Form submission, call, or text comes in</div>
+
+          
+        </div>
+      </div>
+      
+      <div class="timeline-item ">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="timeline-time">Within Minutes</div>
+          <div class="timeline-title-text">Instant Acknowledgment</div>
+          <div class="timeline-description">Homeowner knows their request was received</div>
+
+          
+          <div class="message-preview">
+            
+            <div class="message-preview-header">📱 Text Message:</div>
+            <div class="message-preview-content message-preview-text">
+              "Hi — this is AirPro Services. Got your AC service request. A technician is reviewing the details now. We'll get back to you shortly with next steps."
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="timeline-item ">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="timeline-time">Hour 1-2</div>
+          <div class="timeline-title-text">First Follow-Up</div>
+          <div class="timeline-description">Keep conversation alive while they're still deciding</div>
+
+          
+          <div class="message-preview">
+            
+            <div class="message-preview-header">✉️ Email:</div>
+            <div class="message-preview-content message-preview-email">
+              <div class="email-subject">Subject: Your AC service request with AirPro Services</div>
+              <div class="email-body">"Thanks for reaching out about your AC issue. We have technicians available in Dallas-Fort Worth this week. You can schedule directly at your convenience, or reply here and we'll call you to set it up."</div>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="timeline-item ">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="timeline-time">Hour 6-12</div>
+          <div class="timeline-title-text">Scheduling Prompt</div>
+          <div class="timeline-description">Move toward getting appointment on calendar</div>
+
+          
+          <div class="message-preview">
+            
+            <div class="message-preview-header">📱 Text Message:</div>
+            <div class="message-preview-content message-preview-text">
+              "We've got openings tomorrow and Thursday in Dallas-Fort Worth — want me to hold a time slot for you? Here's our scheduling link if that's easier: [link]"
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="timeline-item ">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="timeline-time">Day 1-2</div>
+          <div class="timeline-title-text">Reminder Touch</div>
+          <div class="timeline-description">Catch those who got busy and forgot to respond</div>
+
+          
+          <div class="message-preview">
+            
+            <div class="message-preview-header">✉️ Email:</div>
+            <div class="message-preview-content message-preview-email">
+              <div class="email-subject">Subject: Quick note from AirPro Services</div>
+              <div class="email-body">"Hey — just making sure this didn't get buried. Still need that AC looked at? We've been servicing Dallas-Fort Worth for years and can usually get someone out same week. Happy to answer any questions."</div>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="timeline-item ">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="timeline-time">Day 3+</div>
+          <div class="timeline-title-text">Final Check-In</div>
+          <div class="timeline-description">Last touch before lead goes cold</div>
+
+          
+          <div class="message-preview">
+            
+            <div class="message-preview-header">📱 Text Message:</div>
+            <div class="message-preview-content message-preview-text">
+              "Last check on your AC request. If you still need help, here's a direct link to book with AirPro Services: [link]. If you've already handled it, no worries at all."
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="timeline-item timeline-item--highlight">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="timeline-time">Any Point</div>
+          <div class="timeline-title-text">Appointment Booked</div>
+          <div class="timeline-description">When homeowner responds, booking flow triggers automatically</div>
+
+          
+          <div class="message-preview">
+            
+            <div class="message-preview-header">✅ Confirmation:</div>
+            <div class="message-preview-content message-preview-confirm">
+              ✓ Your appointment is confirmed for [Date/Time]. We'll send a reminder the day before with your technician's name.
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Reality Check Section -->
+  
+  <div class="reality-section">
+    <h2 class="reality-title">What We're Seeing in HVAC</h2>
+    <div class="reality-grid">
+      
+      <div class="reality-item">
+        <span class="reality-bullet">▸</span>
+        <span class="reality-text">50% of buyers go with the company that responds first</span>
+      </div>
+      
+      <div class="reality-item">
+        <span class="reality-bullet">▸</span>
+        <span class="reality-text">Responding within 5 minutes vs 30 minutes = 21x more likely to qualify</span>
+      </div>
+      
+      <div class="reality-item">
+        <span class="reality-bullet">▸</span>
+        <span class="reality-text">The average HVAC company takes 48 hours to respond</span>
+      </div>
+      
+      <div class="reality-item">
+        <span class="reality-bullet">▸</span>
+        <span class="reality-text">Companies with instant response see 30% higher close rates</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  <!-- Footer -->
+  <div class="footer">
+    <p class="footer-text">This is what the flow looks like for AirPro Services. The actual timing and messages would be tailored to how you already operate.</p>
+  </div>
+</body>
+</html>
