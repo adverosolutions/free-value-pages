@@ -1,1 +1,806 @@
-/Users/lorenzovillarreal/Desktop/AdveroSolutions/Agentic Worklfows/.tmp/free_value/hvac-elite-hvac-services-dallas-fort-worth.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elite HVAC Services Inquiry Response Flow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #181818;
+      color: #f0ede8;
+      line-height: 1.6;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .company-name {
+      font-size: 28px;
+      font-weight: 700;
+      color: #5a8fd4;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: #888;
+      font-weight: 400;
+    }
+
+    .scenario {
+      background: #1e1e1e;
+      border-left: 4px solid #5a8fd4;
+      padding: 16px 20px;
+      margin: 30px 0;
+      font-size: 15px;
+      color: #c8c4bc;
+      border: 1px solid #242424;
+      border-radius: 8px;
+    }
+
+    .scenario strong {
+      color: #5a8fd4;
+      font-weight: 600;
+    }
+
+    /* Gap Comparison Section */
+    .gap-section {
+      margin: 40px 0;
+    }
+
+    .gap-title {
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #f0ede8;
+    }
+
+    .gap-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .gap-comparison {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    .gap-column {
+      padding: 24px;
+      border-radius: 8px;
+      border: 1px solid #242424;
+      background: #1e1e1e;
+    }
+
+    .gap-column--left {
+      border-color: #2a2020;
+    }
+
+    .gap-column--right {
+      border-color: #1e2535;
+      background: #1a1d28;
+    }
+
+    .gap-column-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .gap-column--left .gap-column-title {
+      color: #888;
+    }
+
+    .gap-column--right .gap-column-title {
+      color: #5a8fd4;
+    }
+
+    .gap-list {
+      list-style: none;
+    }
+
+    .gap-list li {
+      padding: 8px 0;
+      padding-left: 24px;
+      position: relative;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #c8c4bc;
+    }
+
+    .gap-list li:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 14px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .gap-column--left .gap-list li {
+      color: #777;
+    }
+
+    .gap-column--left .gap-list li:before {
+      background: #7a3a2a;
+    }
+
+    .gap-column--right .gap-list li:before {
+      background: #5a8fd4;
+    }
+
+    /* Split-Screen Journey Map Section */
+    .timeline-section {
+      margin: 50px 0;
+    }
+
+    .timeline-title {
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 50px;
+      color: #f0ede8;
+    }
+
+    .journey-map {
+      position: relative;
+    }
+
+    .journey-step {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .journey-step {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    .journey-step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -25px;
+      width: 2px;
+      height: 25px;
+      background: #242424;
+      transform: translateX(-50%);
+    }
+
+    @media (max-width: 768px) {
+      .journey-step:not(:last-child)::after {
+        left: 20px;
+      }
+    }
+
+    .journey-side {
+      position: relative;
+      padding: 20px;
+      background: #1e1e1e;
+      border: 1px solid #242424;
+      border-radius: 8px;
+    }
+
+    .journey-side--homeowner {
+      border-left: 3px solid #888;
+    }
+
+    .journey-side--business {
+      border-left: 3px solid #5a8fd4;
+    }
+
+    .journey-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .journey-side--homeowner .journey-label {
+      color: #888;
+    }
+
+    .journey-side--business .journey-label {
+      color: #5a8fd4;
+    }
+
+    .journey-time {
+      font-size: 11px;
+      font-weight: 600;
+      color: #5a8fd4;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .journey-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #f0ede8;
+      margin-bottom: 8px;
+    }
+
+    .journey-description {
+      font-size: 14px;
+      color: #888;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .journey-step--highlight .journey-side--business {
+      background: #1a1d28;
+      border-left-color: #5a8fd4;
+      border-left-width: 4px;
+    }
+
+    .journey-step--highlight .journey-title {
+      color: #5a8fd4;
+    }
+
+    /* Conversation Thread Styles (iMessage-like) */
+    .conversation-thread {
+      margin-top: 16px;
+      padding: 16px;
+      background: #0a0a0a;
+      border-radius: 12px;
+      border: 1px solid #1a1a1a;
+    }
+
+    .conversation-bubble {
+      max-width: 80%;
+      margin-bottom: 12px;
+      clear: both;
+    }
+
+    .conversation-bubble--outgoing {
+      float: right;
+      text-align: right;
+    }
+
+    .conversation-bubble--incoming {
+      float: left;
+      text-align: left;
+    }
+
+    .bubble-content {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 18px;
+      font-size: 14px;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+
+    .conversation-bubble--outgoing .bubble-content {
+      background: #5a8fd4;
+      color: #ffffff;
+      border-bottom-right-radius: 4px;
+    }
+
+    .conversation-bubble--incoming .bubble-content {
+      background: #2a2a2a;
+      color: #c8c4bc;
+      border-bottom-left-radius: 4px;
+    }
+
+    .bubble-timestamp {
+      font-size: 11px;
+      color: #444;
+      margin-top: 4px;
+      display: block;
+    }
+
+    .conversation-thread::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Legacy message preview support (fallback) */
+    .message-preview {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #242424;
+    }
+
+    .message-preview-header {
+      font-size: 11px;
+      font-weight: 600;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .message-preview-content {
+      font-size: 13px;
+      line-height: 1.5;
+      background: #1a1a1a;
+      border: 1px solid #242424;
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: #c8c4bc;
+    }
+
+    .message-preview-text {
+      background: #1a1d28;
+      border-color: #2a2a3a;
+      color: #b8b4ac;
+    }
+
+    .message-preview-email {
+      background: #1a1a1a;
+      border-color: #242424;
+    }
+
+    .email-subject {
+      font-weight: 600;
+      color: #f0ede8;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+
+    .email-body {
+      color: #888;
+    }
+
+    .message-preview-confirm {
+      background: #1a1d28;
+      border-color: #2a3a4a;
+      color: #5a8fd4;
+      font-weight: 500;
+    }
+
+    /* Reality Check Section */
+    .reality-section {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 0;
+      display: grid;
+      gap: 16px;
+    }
+
+    .reality-title {
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 12px;
+      color: #f0ede8;
+    }
+
+    .reality-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .reality-item {
+      background: #1e1e1e;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+      padding: 20px 24px;
+    }
+
+    .reality-stat {
+      font-size: 28px;
+      font-weight: 700;
+      color: #f0ede8;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .reality-text {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid #242424;
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 14px;
+      color: #666;
+      font-style: italic;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        padding: 20px;
+      }
+      .gap-comparison {
+        break-inside: avoid;
+      }
+      .timeline-item {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <h1 class="company-name">Elite HVAC Services Inquiry Response Flow</h1>
+    <p class="subtitle">Inquiry Response Flow</p>
+  </div>
+
+  <!-- Scenario -->
+  <div class="scenario">
+    It's 95° on a Saturday. A homeowner's AC stops working. They find Elite HVAC Services online and submit an inquiry. <strong>78% of homeowners hire whoever responds first (Harvard Business Review). They're also contacting 3-5 other HVAC companies.</strong>
+  </div>
+
+  <!-- Phase 1: Qualifying Leads -->
+  <div class="gap-section">
+    <h2 class="gap-title">Phase 1: Qualifying Leads</h2>
+
+    <div class="gap-comparison">
+      <div class="gap-column gap-column--left">
+        <h3 class="gap-column-title">When It Depends on Your Team</h3>
+        <ul class="gap-list">
+          
+          <li>Owner or dispatcher reads every reply manually</li>
+          
+          <li>No consistent criteria for what makes a good lead</li>
+          
+          <li>High-intent prospects sit in inbox while low-intent get same attention</li>
+          
+          <li>Time wasted on tire kickers and out-of-area inquiries</li>
+          
+          <li>Gut-check decisions made when already busy on a job</li>
+          
+          <li>Emergency vs routine jobs treated the same way</li>
+          
+        </ul>
+      </div>
+
+      <div class="gap-column gap-column--right">
+        <h3 class="gap-column-title">When It Runs on Its Own</h3>
+        <ul class="gap-list">
+          
+          <li>Replies sorted by intent automatically</li>
+          
+          <li>High-intent leads surface immediately</li>
+          
+          <li>Low-intent filtered into slower nurture sequence</li>
+          
+          <li>Out-of-area or unqualified leads identified upfront</li>
+          
+          <li>Right leads get attention first, regardless of how busy the day is</li>
+          
+          <li>Emergency jobs flagged and prioritized instantly</li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 2: First Response -->
+  <div class="gap-section">
+    <h2 class="gap-title">Phase 2: First Response</h2>
+
+    <div class="gap-comparison">
+      <div class="gap-column gap-column--left">
+        <h3 class="gap-column-title">When It Depends on Your Team</h3>
+        <ul class="gap-list">
+          
+          <li>Saturday inquiry → Monday response = Lost to competitor</li>
+          
+          <li>After 5 minutes, conversion drops 80% (MIT study)</li>
+          
+          <li>Tech in attic = 3 hours before anyone replies</li>
+          
+          <li>10 PM emergency? Waits until morning</li>
+          
+          <li>Average HVAC company response: 42-48 hours</li>
+          
+          <li>30-40% of leads never get contacted at all</li>
+          
+        </ul>
+      </div>
+
+      <div class="gap-column gap-column--right">
+        <h3 class="gap-column-title">When It Runs on Its Own</h3>
+        <ul class="gap-list">
+          
+          <li>Response in under 60 seconds, every time</li>
+          
+          <li>Catches them while they're still searching</li>
+          
+          <li>Works while your team is on jobs</li>
+          
+          <li>2 AM emergency? Already handled</li>
+          
+          <li>8 touchpoints over 4 days automatically</li>
+          
+          <li>100% of leads get followed up</li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 3: Journey Map -->
+  <div class="timeline-section">
+    <h2 class="timeline-title">Phase 3: Follow-Up — From First Contact to Scheduled Appointment</h2>
+
+    <div class="journey-map">
+      
+      <div class="journey-step ">
+
+        <!-- Homeowner Side -->
+        <div class="journey-side journey-side--homeowner">
+          <div class="journey-label">Homeowner Experience</div>
+          <span class="journey-time">Minute 0</span>
+          <h3 class="journey-title">Homeowner Submits Inquiry</h3>
+          <p class="journey-description">Form submission, call, or text comes in</p>
+        </div>
+
+        <!-- Business Side -->
+        <div class="journey-side journey-side--business">
+          <div class="journey-label">{company_name} Response</div>
+          <span class="journey-time">Minute 0</span>
+          <h3 class="journey-title">Homeowner Submits Inquiry</h3>
+
+          
+        </div>
+
+      </div>
+      
+      <div class="journey-step ">
+
+        <!-- Homeowner Side -->
+        <div class="journey-side journey-side--homeowner">
+          <div class="journey-label">Homeowner Experience</div>
+          <span class="journey-time">Within 60 Seconds</span>
+          <h3 class="journey-title">Instant Acknowledgment</h3>
+          <p class="journey-description">Homeowner knows their request was received</p>
+        </div>
+
+        <!-- Business Side -->
+        <div class="journey-side journey-side--business">
+          <div class="journey-label">{company_name} Response</div>
+          <span class="journey-time">Within 60 Seconds</span>
+          <h3 class="journey-title">Instant Acknowledgment</h3>
+
+          
+            
+            <div class="conversation-thread">
+              <div class="conversation-bubble conversation-bubble--outgoing">
+                <div class="bubble-content">Hi, this is Elite HVAC Services. Got your AC service request. A technician is reviewing the details now. We'll get back to you shortly with next steps.</div>
+              </div>
+            </div>
+            
+          
+        </div>
+
+      </div>
+      
+      <div class="journey-step ">
+
+        <!-- Homeowner Side -->
+        <div class="journey-side journey-side--homeowner">
+          <div class="journey-label">Homeowner Experience</div>
+          <span class="journey-time">Hour 1-2</span>
+          <h3 class="journey-title">First Follow-Up & Initial Qualification</h3>
+          <p class="journey-description">Keep conversation alive while gathering key details</p>
+        </div>
+
+        <!-- Business Side -->
+        <div class="journey-side journey-side--business">
+          <div class="journey-label">{company_name} Response</div>
+          <span class="journey-time">Hour 1-2</span>
+          <h3 class="journey-title">First Follow-Up & Initial Qualification</h3>
+
+          
+            
+            <div class="message-preview">
+              <div class="message-preview-header">✉️ Email</div>
+              <div class="message-preview-content message-preview-email">
+                <div class="email-subject">Your AC service request with Elite HVAC Services</div>
+                <div class="email-body">Thanks for reaching out about your AC issue. Quick question to help us prepare: Is this for one unit or the whole system? And what part of Dallas-Fort Worth are you located in? We have technicians available this week and want to make sure we're in your service zone.</div>
+              </div>
+            </div>
+            
+          
+        </div>
+
+      </div>
+      
+      <div class="journey-step ">
+
+        <!-- Homeowner Side -->
+        <div class="journey-side journey-side--homeowner">
+          <div class="journey-label">Homeowner Experience</div>
+          <span class="journey-time">Hour 6-12</span>
+          <h3 class="journey-title">Urgency Check & Scheduling</h3>
+          <p class="journey-description">Assess timeline and move toward booking</p>
+        </div>
+
+        <!-- Business Side -->
+        <div class="journey-side journey-side--business">
+          <div class="journey-label">{company_name} Response</div>
+          <span class="journey-time">Hour 6-12</span>
+          <h3 class="journey-title">Urgency Check & Scheduling</h3>
+
+          
+            
+            <div class="conversation-thread">
+              <div class="conversation-bubble conversation-bubble--outgoing">
+                <div class="bubble-content">Quick follow up: How long has the issue been going on? Is the system completely down or just not keeping up? We've got openings tomorrow and Thursday in Dallas-Fort Worth. Want me to hold a time slot for you? Here's our scheduling link: [link]</div>
+              </div>
+            </div>
+            
+          
+        </div>
+
+      </div>
+      
+      <div class="journey-step ">
+
+        <!-- Homeowner Side -->
+        <div class="journey-side journey-side--homeowner">
+          <div class="journey-label">Homeowner Experience</div>
+          <span class="journey-time">Day 1-2</span>
+          <h3 class="journey-title">Reminder Touch</h3>
+          <p class="journey-description">Catch those who got busy and forgot to respond</p>
+        </div>
+
+        <!-- Business Side -->
+        <div class="journey-side journey-side--business">
+          <div class="journey-label">{company_name} Response</div>
+          <span class="journey-time">Day 1-2</span>
+          <h3 class="journey-title">Reminder Touch</h3>
+
+          
+            
+            <div class="message-preview">
+              <div class="message-preview-header">✉️ Email</div>
+              <div class="message-preview-content message-preview-email">
+                <div class="email-subject">Quick note from Elite HVAC Services</div>
+                <div class="email-body">Hey, just making sure this didn't get buried. Still need that AC looked at? We've been servicing Dallas-Fort Worth for years and can usually get someone out same week. Happy to answer any questions.</div>
+              </div>
+            </div>
+            
+          
+        </div>
+
+      </div>
+      
+      <div class="journey-step ">
+
+        <!-- Homeowner Side -->
+        <div class="journey-side journey-side--homeowner">
+          <div class="journey-label">Homeowner Experience</div>
+          <span class="journey-time">Day 3+</span>
+          <h3 class="journey-title">Final Check-In</h3>
+          <p class="journey-description">Last touch before lead goes cold</p>
+        </div>
+
+        <!-- Business Side -->
+        <div class="journey-side journey-side--business">
+          <div class="journey-label">{company_name} Response</div>
+          <span class="journey-time">Day 3+</span>
+          <h3 class="journey-title">Final Check-In</h3>
+
+          
+            
+            <div class="conversation-thread">
+              <div class="conversation-bubble conversation-bubble--outgoing">
+                <div class="bubble-content">Last check on your AC request. If you still need help, here's a direct link to book with Elite HVAC Services: [link]. If you've already handled it, no worries at all.</div>
+              </div>
+            </div>
+            
+          
+        </div>
+
+      </div>
+      
+      <div class="journey-step journey-step--highlight">
+
+        <!-- Homeowner Side -->
+        <div class="journey-side journey-side--homeowner">
+          <div class="journey-label">Homeowner Experience</div>
+          <span class="journey-time">Any Point</span>
+          <h3 class="journey-title">Appointment Booked</h3>
+          <p class="journey-description">When homeowner responds, booking flow triggers automatically</p>
+        </div>
+
+        <!-- Business Side -->
+        <div class="journey-side journey-side--business">
+          <div class="journey-label">{company_name} Response</div>
+          <span class="journey-time">Any Point</span>
+          <h3 class="journey-title">Appointment Booked</h3>
+
+          
+            
+            <div class="message-preview">
+              <div class="message-preview-content message-preview-confirm">
+                ✓ Your appointment is confirmed for [Date/Time]. We'll send a reminder the day before with your technician's name.
+              </div>
+            </div>
+            
+          
+        </div>
+
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Reality Check Section -->
+  
+  <div class="reality-section">
+    <h2 class="reality-title">What We're Seeing in HVAC</h2>
+    <div class="reality-grid">
+      
+      <div class="reality-item">
+        <span class="reality-text">78% of homeowners hire whoever responds first (Harvard Business Review)</span>
+      </div>
+      
+      <div class="reality-item">
+        <span class="reality-text">Responding within 5 minutes vs 30 minutes = 21x more likely to qualify the lead (MIT)</span>
+      </div>
+      
+      <div class="reality-item">
+        <span class="reality-text">Average HVAC company takes 42-48 hours to respond — by then, 67% have already hired someone</span>
+      </div>
+      
+      <div class="reality-item">
+        <span class="reality-text">80% of conversions happen after 5+ follow-up touches — most companies quit after 1-2</span>
+      </div>
+      
+      <div class="reality-item">
+        <span class="reality-text">Homeowners contact 3-5 HVAC companies on average. First to provide appointment wins 60% of the time</span>
+      </div>
+      
+      <div class="reality-item">
+        <span class="reality-text">Companies with instant response + persistent follow-up see 30-40% higher close rates on the same traffic</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  <!-- Footer -->
+  <div class="footer">
+    <p class="footer-text">This is what the flow looks like for Elite HVAC Services. The actual timing and messages would be tailored to how you already operate.</p>
+  </div>
+</body>
+</html>

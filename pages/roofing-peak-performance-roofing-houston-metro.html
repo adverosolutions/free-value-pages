@@ -1,1 +1,806 @@
-/Users/lorenzovillarreal/Desktop/AdveroSolutions/Agentic Worklfows/.tmp/free_value/roofing-peak-performance-roofing-houston-metro.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peak Performance Roofing Inquiry Response Flow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #181818;
+      color: #f0ede8;
+      line-height: 1.6;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .company-name {
+      font-size: 28px;
+      font-weight: 700;
+      color: #5a8fd4;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: #888;
+      font-weight: 400;
+    }
+
+    .scenario {
+      background: #1e1e1e;
+      border-left: 4px solid #5a8fd4;
+      padding: 16px 20px;
+      margin: 30px 0;
+      font-size: 15px;
+      color: #c8c4bc;
+      border: 1px solid #242424;
+      border-radius: 8px;
+    }
+
+    .scenario strong {
+      color: #5a8fd4;
+      font-weight: 600;
+    }
+
+    /* Gap Comparison Section */
+    .gap-section {
+      margin: 40px 0;
+    }
+
+    .gap-title {
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #f0ede8;
+    }
+
+    .gap-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .gap-comparison {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    .gap-column {
+      padding: 24px;
+      border-radius: 8px;
+      border: 1px solid #242424;
+      background: #1e1e1e;
+    }
+
+    .gap-column--left {
+      border-color: #2a2020;
+    }
+
+    .gap-column--right {
+      border-color: #1e2535;
+      background: #1a1d28;
+    }
+
+    .gap-column-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .gap-column--left .gap-column-title {
+      color: #888;
+    }
+
+    .gap-column--right .gap-column-title {
+      color: #5a8fd4;
+    }
+
+    .gap-list {
+      list-style: none;
+    }
+
+    .gap-list li {
+      padding: 8px 0;
+      padding-left: 24px;
+      position: relative;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #c8c4bc;
+    }
+
+    .gap-list li:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 14px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .gap-column--left .gap-list li {
+      color: #777;
+    }
+
+    .gap-column--left .gap-list li:before {
+      background: #7a3a2a;
+    }
+
+    .gap-column--right .gap-list li:before {
+      background: #5a8fd4;
+    }
+
+    /* Split-Screen Journey Map Section */
+    .timeline-section {
+      margin: 50px 0;
+    }
+
+    .timeline-title {
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 50px;
+      color: #f0ede8;
+    }
+
+    .journey-map {
+      position: relative;
+    }
+
+    .journey-step {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .journey-step {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    .journey-step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -25px;
+      width: 2px;
+      height: 25px;
+      background: #242424;
+      transform: translateX(-50%);
+    }
+
+    @media (max-width: 768px) {
+      .journey-step:not(:last-child)::after {
+        left: 20px;
+      }
+    }
+
+    .journey-side {
+      position: relative;
+      padding: 20px;
+      background: #1e1e1e;
+      border: 1px solid #242424;
+      border-radius: 8px;
+    }
+
+    .journey-side--homeowner {
+      border-left: 3px solid #888;
+    }
+
+    .journey-side--business {
+      border-left: 3px solid #5a8fd4;
+    }
+
+    .journey-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .journey-side--homeowner .journey-label {
+      color: #888;
+    }
+
+    .journey-side--business .journey-label {
+      color: #5a8fd4;
+    }
+
+    .journey-time {
+      font-size: 11px;
+      font-weight: 600;
+      color: #5a8fd4;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .journey-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #f0ede8;
+      margin-bottom: 8px;
+    }
+
+    .journey-description {
+      font-size: 14px;
+      color: #888;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .journey-step--highlight .journey-side--business {
+      background: #1a1d28;
+      border-left-color: #5a8fd4;
+      border-left-width: 4px;
+    }
+
+    .journey-step--highlight .journey-title {
+      color: #5a8fd4;
+    }
+
+    /* Conversation Thread Styles (iMessage-like) */
+    .conversation-thread {
+      margin-top: 16px;
+      padding: 16px;
+      background: #0a0a0a;
+      border-radius: 12px;
+      border: 1px solid #1a1a1a;
+    }
+
+    .conversation-bubble {
+      max-width: 80%;
+      margin-bottom: 12px;
+      clear: both;
+    }
+
+    .conversation-bubble--outgoing {
+      float: right;
+      text-align: right;
+    }
+
+    .conversation-bubble--incoming {
+      float: left;
+      text-align: left;
+    }
+
+    .bubble-content {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 18px;
+      font-size: 14px;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+
+    .conversation-bubble--outgoing .bubble-content {
+      background: #5a8fd4;
+      color: #ffffff;
+      border-bottom-right-radius: 4px;
+    }
+
+    .conversation-bubble--incoming .bubble-content {
+      background: #2a2a2a;
+      color: #c8c4bc;
+      border-bottom-left-radius: 4px;
+    }
+
+    .bubble-timestamp {
+      font-size: 11px;
+      color: #444;
+      margin-top: 4px;
+      display: block;
+    }
+
+    .conversation-thread::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Legacy message preview support (fallback) */
+    .message-preview {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #242424;
+    }
+
+    .message-preview-header {
+      font-size: 11px;
+      font-weight: 600;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .message-preview-content {
+      font-size: 13px;
+      line-height: 1.5;
+      background: #1a1a1a;
+      border: 1px solid #242424;
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: #c8c4bc;
+    }
+
+    .message-preview-text {
+      background: #1a1d28;
+      border-color: #2a2a3a;
+      color: #b8b4ac;
+    }
+
+    .message-preview-email {
+      background: #1a1a1a;
+      border-color: #242424;
+    }
+
+    .email-subject {
+      font-weight: 600;
+      color: #f0ede8;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+
+    .email-body {
+      color: #888;
+    }
+
+    .message-preview-confirm {
+      background: #1a1d28;
+      border-color: #2a3a4a;
+      color: #5a8fd4;
+      font-weight: 500;
+    }
+
+    /* Reality Check Section */
+    .reality-section {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 0;
+      display: grid;
+      gap: 16px;
+    }
+
+    .reality-title {
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 12px;
+      color: #f0ede8;
+    }
+
+    .reality-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .reality-item {
+      background: #1e1e1e;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+      padding: 20px 24px;
+    }
+
+    .reality-stat {
+      font-size: 28px;
+      font-weight: 700;
+      color: #f0ede8;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .reality-text {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid #242424;
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 14px;
+      color: #666;
+      font-style: italic;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        padding: 20px;
+      }
+      .gap-comparison {
+        break-inside: avoid;
+      }
+      .timeline-item {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <h1 class="company-name">Peak Performance Roofing Inquiry Response Flow</h1>
+    <p class="subtitle">Inquiry Response Flow</p>
+  </div>
+
+  <!-- Scenario -->
+  <div class="scenario">
+    Storm damage last night. A homeowner wakes up to a leaking roof. They find Peak Performance Roofing and submit an inquiry. <strong>They're contacting 5-10 other roofers. After a storm, 70% of jobs go to companies that respond in the first 24 hours.</strong>
+  </div>
+
+  <!-- Phase 1: Qualifying Leads -->
+  <div class="gap-section">
+    <h2 class="gap-title">Phase 1: Qualifying Leads</h2>
+
+    <div class="gap-comparison">
+      <div class="gap-column gap-column--left">
+        <h3 class="gap-column-title">When It Depends on Your Team</h3>
+        <ul class="gap-list">
+          
+          <li>Owner or estimator reads every inquiry manually</li>
+          
+          <li>No way to tell full replacement vs small repair upfront</li>
+          
+          <li>Active leaks treated same as general inspections</li>
+          
+          <li>Out-of-service-area leads waste time</li>
+          
+          <li>Can't tell if they're shopping 10 roofers or ready to book</li>
+          
+          <li>Storm surge = 50+ inquiries, no way to prioritize</li>
+          
+        </ul>
+      </div>
+
+      <div class="gap-column gap-column--right">
+        <h3 class="gap-column-title">When It Runs on Its Own</h3>
+        <ul class="gap-list">
+          
+          <li>Leads sorted by job size and urgency automatically</li>
+          
+          <li>Full replacements flagged and prioritized instantly</li>
+          
+          <li>Active leaks get immediate attention</li>
+          
+          <li>Out-of-area leads filtered before wasting estimator time</li>
+          
+          <li>High-intent homeowners surface first</li>
+          
+          <li>Storm surge handled without missing the best jobs</li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 2: First Response -->
+  <div class="gap-section">
+    <h2 class="gap-title">Phase 2: First Response</h2>
+
+    <div class="gap-comparison">
+      <div class="gap-column gap-column--left">
+        <h3 class="gap-column-title">When It Depends on Your Team</h3>
+        <ul class="gap-list">
+          
+          <li>Storm Saturday → Response Monday = Already hired someone else</li>
+          
+          <li>After storms, 10-20x normal inquiries = Can't keep up</li>
+          
+          <li>Crew on a job = 4-6 hours before anyone sees it</li>
+          
+          <li>Insurance deadline approaching? Still waiting</li>
+          
+          <li>Average roofer response: 3-5 days (by then, 85% have booked)</li>
+          
+          <li>43% of storm leads never get contacted at all</li>
+          
+        </ul>
+      </div>
+
+      <div class="gap-column gap-column--right">
+        <h3 class="gap-column-title">When It Runs on Its Own</h3>
+        <ul class="gap-list">
+          
+          <li>Response in under 60 seconds, even during storms</li>
+          
+          <li>Handles 100+ inquiries without breaking</li>
+          
+          <li>Works while crews are on roofs</li>
+          
+          <li>Urgent? They know you got their request</li>
+          
+          <li>Persistent follow-up captures busy homeowners</li>
+          
+          <li>Every lead gets 8 touchpoints automatically</li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 3: Journey Map -->
+  <div class="timeline-section">
+    <h2 class="timeline-title">Phase 3: Follow-Up — From First Contact to Scheduled Estimate</h2>
+
+    <div class="journey-map">
+      
+      <div class="journey-step ">
+
+        <!-- Homeowner Side -->
+        <div class="journey-side journey-side--homeowner">
+          <div class="journey-label">Homeowner Experience</div>
+          <span class="journey-time">Minute 0</span>
+          <h3 class="journey-title">Homeowner Submits Inquiry</h3>
+          <p class="journey-description">Form submission, call, or text comes in</p>
+        </div>
+
+        <!-- Business Side -->
+        <div class="journey-side journey-side--business">
+          <div class="journey-label">{company_name} Response</div>
+          <span class="journey-time">Minute 0</span>
+          <h3 class="journey-title">Homeowner Submits Inquiry</h3>
+
+          
+        </div>
+
+      </div>
+      
+      <div class="journey-step ">
+
+        <!-- Homeowner Side -->
+        <div class="journey-side journey-side--homeowner">
+          <div class="journey-label">Homeowner Experience</div>
+          <span class="journey-time">Within 60 Seconds</span>
+          <h3 class="journey-title">Instant Acknowledgment</h3>
+          <p class="journey-description">Homeowner knows their request was received</p>
+        </div>
+
+        <!-- Business Side -->
+        <div class="journey-side journey-side--business">
+          <div class="journey-label">{company_name} Response</div>
+          <span class="journey-time">Within 60 Seconds</span>
+          <h3 class="journey-title">Instant Acknowledgment</h3>
+
+          
+            
+            <div class="conversation-thread">
+              <div class="conversation-bubble conversation-bubble--outgoing">
+                <div class="bubble-content">Hi, this is Peak Performance Roofing. Got your roofing estimate request. We're reviewing the details now. I'll get back to you shortly with next steps.</div>
+              </div>
+            </div>
+            
+          
+        </div>
+
+      </div>
+      
+      <div class="journey-step ">
+
+        <!-- Homeowner Side -->
+        <div class="journey-side journey-side--homeowner">
+          <div class="journey-label">Homeowner Experience</div>
+          <span class="journey-time">Hour 1-2</span>
+          <h3 class="journey-title">First Follow-Up & Initial Qualification</h3>
+          <p class="journey-description">Keep conversation alive while gathering key details</p>
+        </div>
+
+        <!-- Business Side -->
+        <div class="journey-side journey-side--business">
+          <div class="journey-label">{company_name} Response</div>
+          <span class="journey-time">Hour 1-2</span>
+          <h3 class="journey-title">First Follow-Up & Initial Qualification</h3>
+
+          
+            
+            <div class="message-preview">
+              <div class="message-preview-header">✉️ Email</div>
+              <div class="message-preview-content message-preview-email">
+                <div class="email-subject">Your roofing estimate request with Peak Performance Roofing</div>
+                <div class="email-body">Thanks for reaching out about your roofing needs. Quick questions to help us prepare: Are we talking a full replacement or specific damage to an area? And what part of Houston Metro are you in? We want to make sure you're in our service zone before we schedule.</div>
+              </div>
+            </div>
+            
+          
+        </div>
+
+      </div>
+      
+      <div class="journey-step ">
+
+        <!-- Homeowner Side -->
+        <div class="journey-side journey-side--homeowner">
+          <div class="journey-label">Homeowner Experience</div>
+          <span class="journey-time">Hour 6-12</span>
+          <h3 class="journey-title">Urgency Assessment & Scheduling</h3>
+          <p class="journey-description">Determine priority level and book inspection</p>
+        </div>
+
+        <!-- Business Side -->
+        <div class="journey-side journey-side--business">
+          <div class="journey-label">{company_name} Response</div>
+          <span class="journey-time">Hour 6-12</span>
+          <h3 class="journey-title">Urgency Assessment & Scheduling</h3>
+
+          
+            
+            <div class="conversation-thread">
+              <div class="conversation-bubble conversation-bubble--outgoing">
+                <div class="bubble-content">One more question: Is there active leaking inside the home right now? Was this from recent storm damage or wear over time? We've got inspection slots open tomorrow and Friday in Houston Metro. Want me to reserve one for you? Here's our link: [link]</div>
+              </div>
+            </div>
+            
+          
+        </div>
+
+      </div>
+      
+      <div class="journey-step ">
+
+        <!-- Homeowner Side -->
+        <div class="journey-side journey-side--homeowner">
+          <div class="journey-label">Homeowner Experience</div>
+          <span class="journey-time">Day 1-2</span>
+          <h3 class="journey-title">Reminder Touch</h3>
+          <p class="journey-description">Catch those who got busy and forgot to respond</p>
+        </div>
+
+        <!-- Business Side -->
+        <div class="journey-side journey-side--business">
+          <div class="journey-label">{company_name} Response</div>
+          <span class="journey-time">Day 1-2</span>
+          <h3 class="journey-title">Reminder Touch</h3>
+
+          
+            
+            <div class="message-preview">
+              <div class="message-preview-header">✉️ Email</div>
+              <div class="message-preview-content message-preview-email">
+                <div class="email-subject">Quick note from Peak Performance Roofing</div>
+                <div class="email-body">Hey, just making sure this didn't get buried. Still need that roof looked at? We've been handling storm damage in Houston Metro for years and can usually get an inspector out within 48 hours. Happy to answer any questions.</div>
+              </div>
+            </div>
+            
+          
+        </div>
+
+      </div>
+      
+      <div class="journey-step ">
+
+        <!-- Homeowner Side -->
+        <div class="journey-side journey-side--homeowner">
+          <div class="journey-label">Homeowner Experience</div>
+          <span class="journey-time">Day 3+</span>
+          <h3 class="journey-title">Final Check-In</h3>
+          <p class="journey-description">Last touch before lead goes cold</p>
+        </div>
+
+        <!-- Business Side -->
+        <div class="journey-side journey-side--business">
+          <div class="journey-label">{company_name} Response</div>
+          <span class="journey-time">Day 3+</span>
+          <h3 class="journey-title">Final Check-In</h3>
+
+          
+            
+            <div class="conversation-thread">
+              <div class="conversation-bubble conversation-bubble--outgoing">
+                <div class="bubble-content">Last check on your roofing estimate. If you still need an inspection, here's a direct link to book with Peak Performance Roofing: [link]. If you've already handled it, no worries at all.</div>
+              </div>
+            </div>
+            
+          
+        </div>
+
+      </div>
+      
+      <div class="journey-step journey-step--highlight">
+
+        <!-- Homeowner Side -->
+        <div class="journey-side journey-side--homeowner">
+          <div class="journey-label">Homeowner Experience</div>
+          <span class="journey-time">Any Point</span>
+          <h3 class="journey-title">Estimate Booked</h3>
+          <p class="journey-description">When homeowner responds, booking flow triggers automatically</p>
+        </div>
+
+        <!-- Business Side -->
+        <div class="journey-side journey-side--business">
+          <div class="journey-label">{company_name} Response</div>
+          <span class="journey-time">Any Point</span>
+          <h3 class="journey-title">Estimate Booked</h3>
+
+          
+            
+            <div class="message-preview">
+              <div class="message-preview-content message-preview-confirm">
+                ✓ Your inspection is confirmed for [Date/Time]. Our estimator will assess the damage and provide a detailed quote on-site. We'll send a reminder the day before.
+              </div>
+            </div>
+            
+          
+        </div>
+
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Reality Check Section -->
+  
+  <div class="reality-section">
+    <h2 class="reality-title">What We're Seeing in Roofing</h2>
+    <div class="reality-grid">
+      
+      <div class="reality-item">
+        <span class="reality-text">After a storm, 70% of jobs go to companies that respond in the first 24 hours (NRCA + GAF)</span>
+      </div>
+      
+      <div class="reality-item">
+        <span class="reality-text">Homeowners contact 5-10 roofers on average. First to provide estimate wins 60% of the time</span>
+      </div>
+      
+      <div class="reality-item">
+        <span class="reality-text">Weekend storm inquiries: 8% close rate if they wait until Monday vs 38% for instant response</span>
+      </div>
+      
+      <div class="reality-item">
+        <span class="reality-text">43% of roofing leads nationwide never get contacted at all (CallRail)</span>
+      </div>
+      
+      <div class="reality-item">
+        <span class="reality-text">Average roofer response time: 3-5 days. By then, 85% of homeowners have already booked</span>
+      </div>
+      
+      <div class="reality-item">
+        <span class="reality-text">80% of conversions happen after 5+ follow-ups — most roofers quit after 1-2 attempts</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  <!-- Footer -->
+  <div class="footer">
+    <p class="footer-text">This is what the flow looks like for Peak Performance Roofing. The actual timing and messages would be tailored to how you already operate.</p>
+  </div>
+</body>
+</html>
