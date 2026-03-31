@@ -1,853 +1,886 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Peak Performance Roofing Inquiry Response Flow</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-page: #181818;
-      --bg-surface: #1e1e1e;
-      --bg-bubble-in: #2a2a2a;
-      --border: #242424;
-      --text-primary: #f0ede8;
-      --text-secondary: #888888;
-      --text-muted: #555555;
-      --text-body: #777777;
-      --text-bubble-in: #c8c4bc;
-      --text-timestamp: #444444;
-      --text-stat-label: #666666;
-      --accent-blue: #5a8fd4;
-      --dot-negative: #7a3a2a;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--bg-page);
-      color: var(--text-primary);
-      line-height: 1.6;
-      padding: 40px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .header {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .company-name {
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--accent-blue);
-      margin-bottom: 8px;
-    }
-
-    .subtitle {
-      font-size: 18px;
-      color: var(--text-secondary);
-      font-weight: 400;
-    }
-
-    .scenario {
-      background: var(--bg-surface);
-      border-left: 4px solid var(--accent-blue);
-      padding: 16px 20px;
-      margin: 30px 0;
-      font-size: 15px;
-      color: var(--text-bubble-in);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-    }
-
-    .scenario strong {
-      color: var(--accent-blue);
-      font-weight: 600;
-    }
-
-    /* Gap Comparison Section */
-    .gap-section {
-      margin: 40px 0;
-    }
-
-    .gap-title {
-      font-size: 20px;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 30px;
-      color: var(--text-primary);
-    }
-
-    .gap-comparison {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      margin-bottom: 40px;
-    }
-
-    @media (max-width: 768px) {
-      .gap-comparison {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-    }
-
-    .gap-column {
-      padding: 24px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: var(--bg-surface);
-    }
-
-    .gap-column--left {
-      border-color: #2a2020;
-    }
-
-    .gap-column--right {
-      border-color: #1e2535;
-      background: #1a1d28;
-    }
-
-    .gap-column-title {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 16px;
-      text-align: center;
-    }
-
-    .gap-column--left .gap-column-title {
-      color: var(--text-secondary);
-    }
-
-    .gap-column--right .gap-column-title {
-      color: var(--accent-blue);
-    }
-
-    .gap-list {
-      list-style: none;
-    }
-
-    .gap-list li {
-      padding: 8px 0;
-      padding-left: 24px;
-      position: relative;
-      font-size: 14px;
-      line-height: 1.5;
-      color: var(--text-bubble-in);
-    }
-
-    .gap-list li:before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 14px;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-    }
-
-    .gap-column--left .gap-list li {
-      color: var(--text-body);
-    }
-
-    .gap-column--left .gap-list li:before {
-      background: var(--dot-negative);
-    }
-
-    .gap-column--right .gap-list li:before {
-      background: var(--accent-blue);
-    }
-
-    /* Split-Screen Journey Map Section */
-    .timeline-section {
-      margin: 50px 0;
-    }
-
-    .timeline-title {
-      font-size: 20px;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 50px;
-      color: var(--text-primary);
-    }
-
-    .journey-map {
-      position: relative;
-    }
-
-    .journey-step {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 50px;
-      position: relative;
-    }
-
-    @media (max-width: 768px) {
-      .journey-step {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-    }
-
-    .journey-step:not(:last-child)::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: -25px;
-      width: 2px;
-      height: 25px;
-      background: var(--border);
-      transform: translateX(-50%);
-    }
-
-    @media (max-width: 768px) {
-      .journey-step:not(:last-child)::after {
-        left: 20px;
-      }
-    }
-
-    .journey-side {
-      position: relative;
-      padding: 20px;
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-    }
-
-    .journey-side--homeowner {
-      border-left: 3px solid var(--text-secondary);
-    }
-
-    .journey-side--business {
-      border-left: 3px solid var(--accent-blue);
-    }
-
-    .journey-label {
-      font-size: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 8px;
-    }
-
-    .journey-side--homeowner .journey-label {
-      color: var(--text-secondary);
-    }
-
-    .journey-side--business .journey-label {
-      color: var(--accent-blue);
-    }
-
-    .journey-time {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--accent-blue);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 12px;
-      display: block;
-    }
-
-    .journey-title {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 8px;
-    }
-
-    .journey-description {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.5;
-      margin-bottom: 12px;
-    }
-
-    .journey-step--highlight .journey-side--business {
-      background: #1a1d28;
-      border-left-color: var(--accent-blue);
-      border-left-width: 4px;
-    }
-
-    .journey-step--highlight .journey-title {
-      color: var(--accent-blue);
-    }
-
-    /* Conversation Thread Styles (iMessage-like) */
-    .conversation-thread {
-      margin-top: 16px;
-      padding: 16px;
-      background: #0a0a0a;
-      border-radius: 12px;
-      border: 1px solid #1a1a1a;
-      min-height: 60px;
-    }
-
-    .conversation-bubble {
-      max-width: 80%;
-      margin-bottom: 12px;
-      clear: both;
-    }
-
-    .conversation-bubble--outgoing {
-      float: right;
-      text-align: right;
-    }
-
-    .conversation-bubble--incoming {
-      float: left;
-      text-align: left;
-    }
-
-    .bubble-content {
-      display: inline-block;
-      padding: 10px 14px;
-      border-radius: 18px;
-      font-size: 14px;
-      line-height: 1.4;
-      word-wrap: break-word;
-    }
-
-    .conversation-bubble--outgoing .bubble-content {
-      background: var(--accent-blue);
-      color: #ffffff;
-      border-bottom-right-radius: 4px;
-    }
-
-    .conversation-bubble--incoming .bubble-content {
-      background: var(--bg-bubble-in);
-      color: var(--text-bubble-in);
-      border-bottom-left-radius: 4px;
-    }
-
-    .bubble-timestamp {
-      font-size: 11px;
-      color: var(--text-timestamp);
-      margin-top: 4px;
-      display: block;
-    }
-
-    .conversation-thread::after {
-      content: "";
-      display: table;
-      clear: both;
-    }
-
-    /* Legacy message preview support (fallback) */
-    .message-preview {
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
-    }
-
-    .message-preview-header {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-stat-label);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 8px;
-    }
-
-    .message-preview-content {
-      font-size: 13px;
-      line-height: 1.5;
-      background: #1a1a1a;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px 14px;
-      color: var(--text-bubble-in);
-    }
-
-    .message-preview-text {
-      background: #1a1d28;
-      border-color: #2a2a3a;
-      color: #b8b4ac;
-    }
-
-    .message-preview-email {
-      background: #1a1a1a;
-      border-color: var(--border);
-    }
-
-    .email-subject {
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 8px;
-      font-size: 13px;
-    }
-
-    .email-body {
-      color: var(--text-secondary);
-    }
-
-    .message-preview-confirm {
-      background: #1a1d28;
-      border-color: #2a3a4a;
-      color: var(--accent-blue);
-      font-weight: 500;
-    }
-
-    /* Reality Check Section */
-    .reality-section {
-      margin: 50px auto;
-      max-width: 900px;
-    }
-
-    .reality-title {
-      font-size: 20px;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 30px;
-      color: var(--text-primary);
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    @media (max-width: 640px) {
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .stat-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 14px 16px;
-    }
-
-    .stat-number {
-      font-size: 26px;
-      font-weight: 500;
-      color: var(--text-primary);
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-
-    .stat-label {
-      font-size: 11px;
-      color: var(--text-stat-label);
-      line-height: 1.5;
-    }
-
-    /* Reality grid - full text stats */
-    .reality-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    @media (max-width: 640px) {
-      .reality-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .reality-item {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px 18px;
-    }
-
-    .reality-text {
-      font-size: 13px;
-      color: var(--text-bubble-in);
-      line-height: 1.6;
-      font-weight: 400;
-    }
-
-    /* Footer */
-    .footer {
-      margin-top: 50px;
-      padding-top: 30px;
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-
-    .footer-text {
-      font-size: 14px;
-      color: var(--text-stat-label);
-      font-style: italic;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* Print styles */
-    @media print {
-      body {
-        padding: 20px;
-      }
-      .gap-comparison {
-        break-inside: avoid;
-      }
-      .timeline-item {
-        break-inside: avoid;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peak Performance Roofing — Inquiry Response Flow</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg-page:         #181818;
+    --bg-surface:      #1e1e1e;
+    --bg-surface-2:    #222222;
+    --bg-bubble-in:    #2a2a2a;
+    --border:          #2a2a2a;
+    --border-soft:     #242424;
+    --text-primary:    #f0ede8;
+    --text-secondary:  #888888;
+    --text-muted:      #555555;
+    --text-body:       #777777;
+    --text-bubble-in:  #c8c4bc;
+    --text-timestamp:  #444444;
+    --text-stat-label: #666666;
+    --accent-blue:     #5a8fd4;
+    --accent-blue-dim: #1e2535;
+    --dot-negative:    #7a3a2a;
+    --font-main:       'DM Sans', sans-serif;
+    --font-mono:       'DM Mono', monospace;
+  }
+
+  html, body {
+    background: var(--bg-page);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 0 60px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    padding: 36px 40px 28px;
+    border-bottom: 1px solid var(--border-soft);
+    background: var(--bg-surface);
+  }
+  .header-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-blue);
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-family: var(--font-mono);
+  }
+  .header-company {
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .header-sub {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 5px;
+  }
+
+  /* ── PHASE TABS ── */
+  .phase-strip {
+    display: flex;
+    border-bottom: 1px solid var(--border-soft);
+    background: var(--bg-surface);
+  }
+  .phase-tab {
+    flex: 1;
+    padding: 13px 16px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-align: center;
+    border-right: 1px solid var(--border-soft);
+    position: relative;
+    font-family: var(--font-mono);
+  }
+  .phase-tab:last-child { border-right: none; }
+  .phase-tab.p1,
+  .phase-tab.p2,
+  .phase-tab.p3 {
+    color: var(--accent-blue);
+    background: var(--accent-blue-dim);
+  }
+  .phase-tab.p1::after,
+  .phase-tab.p2::after,
+  .phase-tab.p3::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent-blue);
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 32px 40px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 6px;
+    font-family: var(--font-mono);
+  }
+  .section-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── SCENARIO ── */
+  .scenario {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    padding: 20px 24px;
+    background: var(--bg-surface-2);
+    border-left: 2px solid var(--accent-blue);
+    border-radius: 0 8px 8px 0;
+  }
+
+  /* ── GAP COMPARISON ── */
+  .gap-grid {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 0;
+  }
+  .gap-divider { background: var(--border-soft); }
+  .gap-col { padding: 0 24px; }
+  .gap-col:first-child { padding-left: 0; }
+  .gap-col:last-child  { padding-right: 0; }
+  .col-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-family: var(--font-mono);
+  }
+  .col-label.manual { color: var(--text-muted); }
+  .col-label.auto   { color: var(--accent-blue); }
+  .gap-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-body);
+    padding: 7px 0;
+    border-bottom: 1px solid #1f1f1f;
+    line-height: 1.5;
+  }
+  .gap-item:last-child { border-bottom: none; }
+  .gap-item.good { color: #8ab0d0; }
+  .dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+  .dot.neg { background: var(--dot-negative); }
+  .dot.pos { background: var(--accent-blue); }
+
+  /* ── SPLIT SCREEN JOURNEY ── */
+  .journey-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .journey-col-label {
+    padding: 12px 20px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    border-right: 1px solid var(--border-soft);
+  }
+  .journey-col-label:last-child {
+    border-right: none;
+    color: var(--accent-blue);
+  }
+
+  .journey-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid #1e1e1e;
+  }
+  .journey-row:last-child { border-bottom: none; }
+
+  .journey-cell {
+    padding: 20px;
+    border-right: 1px solid var(--border-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .journey-cell:last-child { border-right: none; }
+
+  .journey-timestamp {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-timestamp);
+    font-family: var(--font-mono);
+    margin-bottom: 2px;
+  }
+  .journey-timestamp.now { color: var(--accent-blue); }
+
+  .journey-event {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+  .journey-event-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 3px;
+  }
+
+  /* ── SMS THREAD ── */
+  .thread {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .bubble-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+  }
+  .bubble-row.out { justify-content: flex-end; }
+  .bubble-row.in  { justify-content: flex-start; }
+  .bubble {
+    max-width: 85%;
+    padding: 8px 12px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 14px;
+  }
+  .bubble.out {
+    background: var(--accent-blue);
+    color: #ffffff;
+    border-bottom-right-radius: 4px;
+  }
+  .bubble.in {
+    background: var(--bg-bubble-in);
+    color: var(--text-bubble-in);
+    border-bottom-left-radius: 4px;
+  }
+  .thread-meta {
+    font-size: 9px;
+    color: var(--text-timestamp);
+    text-align: center;
+    margin: 6px 0 2px;
+    letter-spacing: 0.06em;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+  }
+
+  .email-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .email-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-blue);
+    font-family: var(--font-mono);
+  }
+  .email-tag svg {
+    width: 11px; height: 11px;
+    fill: var(--accent-blue);
+    flex-shrink: 0;
+  }
+  .email-preview {
+    background: #1a2535;
+    border: 1px solid #2a3f5f;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 11px;
+    color: #9ab8d8;
+    line-height: 1.6;
+  }
+  .email-header {
+    background: #1e2e45;
+    border-bottom: 1px solid #2a3f5f;
+    padding: 8px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .email-header-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    font-size: 10px;
+  }
+  .email-header-label {
+    color: #4a6f9a;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    min-width: 28px;
+    flex-shrink: 0;
+  }
+  .email-header-value {
+    color: #8ab0d8;
+    font-size: 10px;
+  }
+  .email-subject-row {
+    padding: 8px 12px 6px;
+    border-bottom: 1px solid #2a3f5f;
+  }
+  .email-subject {
+    font-size: 11px;
+    font-weight: 500;
+    color: #c8ddf0;
+  }
+  .email-body {
+    padding: 10px 12px;
+    font-size: 11px;
+    color: #9ab8d8;
+    line-height: 1.7;
+  }
+
+  /* ── BOOKED HIGHLIGHT ── */
+  .journey-row.booked .journey-cell { background: #1a2235; }
+  .booked-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--accent-blue);
+    font-family: var(--font-mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .booked-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+  }
+
+  /* ── STATS ── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .stat-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .stat-number {
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+    font-family: var(--font-mono);
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--text-stat-label);
+    line-height: 1.5;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 24px 40px;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-style: italic;
+    text-align: center;
+    line-height: 1.7;
+    border-top: 1px solid var(--border-soft);
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 640px) {
+    .header, .section { padding-left: 20px; padding-right: 20px; }
+    .footer { padding-left: 20px; padding-right: 20px; }
+    .phase-tab { font-size: 9px; padding: 10px 8px; letter-spacing: 0.06em; }
+
+    .gap-grid { grid-template-columns: 1fr; gap: 20px; }
+    .gap-divider { display: none; }
+    .gap-col { padding: 0; }
+
+    .journey-header,
+    .journey-row { grid-template-columns: 1fr; }
+    .journey-cell { border-right: none; border-bottom: 1px solid var(--border-soft); }
+    .journey-cell:last-child { border-bottom: none; }
+    .journey-col-label { border-right: none; border-bottom: 1px solid var(--border-soft); }
+
+    .stats-grid { grid-template-columns: 1fr; }
+  }
+
+  .zone-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 0;
+  }
+  .zone-divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border-soft);
+  }
+  .zone-divider-label {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-family: var(--font-mono);
+    white-space: nowrap;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid #2a3f5f;
+    color: var(--accent-blue);
+    background: var(--accent-blue-dim);
+  }
+
+  /* ── ZONE LEFT BORDER ACCENTS ── */
+  .journey-row.zone-followup,
+  .journey-row.zone-booking,
+  .journey-row.zone-reminder {
+    background: var(--bg-surface);
+  }
+
+  .journey-row.zone-followup .journey-cell:first-child {
+    border-left: 3px solid #3a3a3a;
+  }
+  .journey-row.zone-booking .journey-cell:first-child {
+    border-left: 3px solid var(--accent-blue);
+  }
+  .journey-row.zone-reminder .journey-cell:first-child {
+    border-left: 3px solid #2a4a7a;
+  }
+
+  .journey-row.zone-followup .journey-cell,
+  .journey-row.zone-booking .journey-cell,
+  .journey-row.zone-reminder .journey-cell {
+    border-right-color: var(--border-soft);
+  }
+
+</style>
 </head>
 <body>
-  <!-- Header -->
+<div class="page">
+
+  <!-- HEADER -->
   <div class="header">
-    <h1 class="company-name">Peak Performance Roofing Inquiry Response Flow</h1>
-    <p class="subtitle">Inquiry Response Flow</p>
+    <div class="header-label">Inquiry Response Flow</div>
+    <div class="header-company">Peak Performance Roofing</div>
+    <div class="header-sub">Houston Metro &nbsp;·&nbsp; Prepared for Sarah</div>
   </div>
 
-  <!-- Scenario -->
-  <div class="scenario">
-    Storm damage last night. A homeowner wakes up to a leaking roof. They find Peak Performance Roofing and submit an inquiry.
+  <!-- PHASE TABS -->
+  <div class="phase-strip">
+    <div class="phase-tab p1">01 &nbsp;·&nbsp; Qualifying</div>
+    <div class="phase-tab p2">02 &nbsp;·&nbsp; First Response</div>
+    <div class="phase-tab p3">03 &nbsp;·&nbsp; Follow-Up</div>
   </div>
 
-  <!-- Phase 1: Qualifying Leads -->
-  <div class="gap-section">
-    <h2 class="gap-title">Phase 1: Qualifying Leads</h2>
+  <!-- SCENARIO -->
+  <div class="section">
+    <div class="section-eyebrow">The situation</div>
+    <div class="scenario">
+      Storm damage last night. A homeowner wakes up to a leaking roof and starts searching for help. They find Peak Performance Roofing online and submit an inquiry. They're also contacting 4 to 6 other roofing companies at the same time.
+    </div>
+  </div>
 
-    <div class="gap-comparison">
-      <div class="gap-column gap-column--left">
-        <h3 class="gap-column-title">When It Depends on Your Team</h3>
-        <ul class="gap-list">
-          
-          <li>Owner or estimator reads every inquiry manually</li>
-          
-          <li>No way to tell full replacement vs small repair upfront</li>
-          
-          <li>Active leaks treated same as general inspections</li>
-          
-          <li>Out-of-service-area leads waste time</li>
-          
-          <li>Can't tell if they're shopping 10 roofers or ready to book</li>
-          
-          <li>Storm surge = 50+ inquiries, no way to prioritize</li>
-          
-        </ul>
+  <!-- PHASE 1: QUALIFYING -->
+  <div class="section">
+    <div class="section-eyebrow">Phase 01</div>
+    <div class="section-title">Qualifying leads</div>
+    <div class="gap-grid">
+      <div class="gap-col">
+        <div class="col-label manual">When the team decides</div>
+        <div class="gap-item"><span class="dot neg"></span>Every inquiry handled blind, no context before the first call</div>
+        <div class="gap-item"><span class="dot neg"></span>Team finds out damage details on the phone, wasting time on both sides</div>
+        <div class="gap-item"><span class="dot neg"></span>No way to know if it's active leaking or a routine check before calling</div>
+        <div class="gap-item"><span class="dot neg"></span>Out-of-area inquiries only discovered after someone picks up the phone</div>
+        <div class="gap-item"><span class="dot neg"></span>Weekend storms mean the team shows up to calls completely unprepared</div>
       </div>
-
-      <div class="gap-column gap-column--right">
-        <h3 class="gap-column-title">When It Runs on Its Own</h3>
-        <ul class="gap-list">
-          
-          <li>Leads sorted by job size and urgency automatically</li>
-          
-          <li>Full replacements flagged and prioritized instantly</li>
-          
-          <li>Active leaks get immediate attention</li>
-          
-          <li>Out-of-area leads filtered before wasting estimator time</li>
-          
-          <li>High-intent homeowners surface first</li>
-          
-          <li>Storm surge handled without missing the best jobs</li>
-          
-        </ul>
+      <div class="gap-divider"></div>
+      <div class="gap-col">
+        <div class="col-label auto">When it runs on its own</div>
+        <div class="gap-item good"><span class="dot pos"></span>Team already knows the damage scope before the first call</div>
+        <div class="gap-item good"><span class="dot pos"></span>Active leaking vs routine damage identified upfront so the team is prepared</div>
+        <div class="gap-item good"><span class="dot pos"></span>Out-of-area inquiries flagged before anyone picks up the phone</div>
+        <div class="gap-item good"><span class="dot pos"></span>Every lead still gets contacted, the team just shows up informed</div>
+        <div class="gap-item good"><span class="dot pos"></span>Works through the weekend while the crew is off</div>
       </div>
     </div>
   </div>
 
-  <!-- Phase 2: First Response -->
-  <div class="gap-section">
-    <h2 class="gap-title">Phase 2: First Response</h2>
-
-    <div class="gap-comparison">
-      <div class="gap-column gap-column--left">
-        <h3 class="gap-column-title">When It Depends on Your Team</h3>
-        <ul class="gap-list">
-          
-          <li>Storm Saturday → Response Monday = Already hired someone else</li>
-          
-          <li>After storms, 10-20x normal inquiries = Can't keep up</li>
-          
-          <li>Crew on a job = 4-6 hours before anyone sees it</li>
-          
-          <li>Insurance deadline approaching? Still waiting</li>
-          
-          <li>Average roofer response: 3-5 days (by then, 85% have booked)</li>
-          
-          <li>43% of storm leads never get contacted at all</li>
-          
-        </ul>
+  <!-- PHASE 2: FIRST RESPONSE -->
+  <div class="section">
+    <div class="section-eyebrow">Phase 02</div>
+    <div class="section-title">First response</div>
+    <div class="gap-grid">
+      <div class="gap-col">
+        <div class="col-label manual">When the team decides</div>
+        <div class="gap-item"><span class="dot neg"></span>Sunday storm inquiry waits until Monday morning</div>
+        <div class="gap-item"><span class="dot neg"></span>Crew on a job means hours before anyone sees the lead</div>
+        <div class="gap-item"><span class="dot neg"></span>No reply while homeowner is still searching means they move on</div>
+        <div class="gap-item"><span class="dot neg"></span>First 24 hours after a storm are the highest-value window</div>
+        <div class="gap-item"><span class="dot neg"></span>43% of roofing leads never get contacted</div>
       </div>
-
-      <div class="gap-column gap-column--right">
-        <h3 class="gap-column-title">When It Runs on Its Own</h3>
-        <ul class="gap-list">
-          
-          <li>Response in under 60 seconds, even during storms</li>
-          
-          <li>Handles 100+ inquiries without breaking</li>
-          
-          <li>Works while crews are on roofs</li>
-          
-          <li>Urgent? They know you got their request</li>
-          
-          <li>Persistent follow-up captures busy homeowners</li>
-          
-          <li>Every lead gets 8 touchpoints automatically</li>
-          
-        </ul>
+      <div class="gap-divider"></div>
+      <div class="gap-col">
+        <div class="col-label auto">When it runs on its own</div>
+        <div class="gap-item good"><span class="dot pos"></span>Response in under 60 seconds, any time of day</div>
+        <div class="gap-item good"><span class="dot pos"></span>Catches them while they're still deciding</div>
+        <div class="gap-item good"><span class="dot pos"></span>Storm at 11 PM gets a reply before midnight</div>
+        <div class="gap-item good"><span class="dot pos"></span>100% of leads get a response</div>
+        <div class="gap-item good"><span class="dot pos"></span>Team wakes up to warm, qualified leads</div>
       </div>
     </div>
   </div>
 
-  <!-- Phase 3: Journey Map -->
-  <div class="timeline-section">
-    <h2 class="timeline-title">Phase 3: Follow-Up</h2>
+  <!-- PHASE 3: FOLLOW-UP SPLIT SCREEN -->
+  <div class="section">
+    <div class="section-eyebrow">Phase 03</div>
+    <div class="section-title">From first contact to handed off to the team</div>
 
-    <div class="journey-map">
-      
-      <div class="journey-step ">
-
-        <!-- Homeowner Side -->
-        <div class="journey-side journey-side--homeowner">
-          <div class="journey-label">Homeowner Experience</div>
-          <span class="journey-time">Minute 0</span>
-          <h3 class="journey-title">Homeowner Submits Inquiry</h3>
-          <p class="journey-description">Form submission, call, or text comes in</p>
-        </div>
-
-        <!-- Business Side -->
-        <div class="journey-side journey-side--business">
-          <div class="journey-label">Peak Performance Roofing Response</div>
-          <span class="journey-time">Minute 0</span>
-          <h3 class="journey-title">Homeowner Submits Inquiry</h3>
-
-          
-        </div>
-
+    <div class="journey-header">
+      <div class="journey-col-label">Homeowner experience</div>
+      <div class="journey-col-label">Peak Performance Roofing</div>
+    </div>
+    <!-- ROW 1: Minute 0 -->
+    <div class="journey-row zone-followup">
+      <div class="journey-cell">
+        <div class="journey-timestamp">Minute 0</div>
+        <div class="journey-event-title">Inquiry submitted</div>
+        <div class="journey-event">Form, call, or text comes in. Homeowner is still deciding who to go with.</div>
       </div>
-      
-      <div class="journey-step ">
+      <div class="journey-cell">
+        <div class="journey-timestamp">Minute 0</div>
+        <div class="journey-event">Inquiry received. Instant response fires before anyone on the team has even seen it.</div>
+      </div>
+    </div>
 
-        <!-- Homeowner Side -->
-        <div class="journey-side journey-side--homeowner">
-          <div class="journey-label">Homeowner Experience</div>
-          <span class="journey-time">Within 60 Seconds</span>
-          <h3 class="journey-title">Instant Acknowledgment</h3>
-          <p class="journey-description">Homeowner knows their request was received</p>
-        </div>
-
-        <!-- Business Side -->
-        <div class="journey-side journey-side--business">
-          <div class="journey-label">Peak Performance Roofing Response</div>
-          <span class="journey-time">Within 60 Seconds</span>
-          <h3 class="journey-title">Instant Acknowledgment</h3>
-
-          
-            
-            <div class="conversation-thread">
-              <div class="conversation-bubble conversation-bubble--outgoing">
-                <div class="bubble-content">Hi, this is Peak Performance Roofing. Got your roofing estimate request. We're reviewing the details now. I'll get back to you shortly with next steps.</div>
-              </div>
+    <!-- ROW 2: Within 60 seconds — TEXT + EMAIL simultaneously -->
+    <div class="journey-row zone-followup">
+      <div class="journey-cell">
+        <div class="journey-timestamp now">Within 60 seconds</div>
+        <div class="journey-event-title">Homeowner feels taken care of</div>
+        <div class="journey-event">They hear back before most companies have even seen the inquiry. They stay put instead of moving on.</div>
+      </div>
+      <div class="journey-cell">
+        <div class="journey-timestamp now">Within 60 seconds</div>
+        <div class="thread">
+          <div class="bubble-row out">
+            <div class="bubble out">Hey, this is Peak Performance Roofing — got your roofing request. So we can get someone out to you as fast as possible, what's your zip code and can you give us a quick description of what's going on?</div>
+          </div>
+          <div class="email-wrap" style="margin-top:10px">
+            <div class="email-tag">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              via email, sent simultaneously
             </div>
-            
-          
-        </div>
-
-      </div>
-      
-      <div class="journey-step ">
-
-        <!-- Homeowner Side -->
-        <div class="journey-side journey-side--homeowner">
-          <div class="journey-label">Homeowner Experience</div>
-          <span class="journey-time">Hour 1-2</span>
-          <h3 class="journey-title">First Follow-Up & Initial Qualification</h3>
-          <p class="journey-description">Keep conversation alive while gathering key details</p>
-        </div>
-
-        <!-- Business Side -->
-        <div class="journey-side journey-side--business">
-          <div class="journey-label">Peak Performance Roofing Response</div>
-          <span class="journey-time">Hour 1-2</span>
-          <h3 class="journey-title">First Follow-Up & Initial Qualification</h3>
-
-          
-            
-            <div class="message-preview">
-              <div class="message-preview-header">✉️ Email</div>
-              <div class="message-preview-content message-preview-email">
-                <div class="email-subject">Your roofing estimate request with Peak Performance Roofing</div>
-                <div class="email-body">Thanks for reaching out about your roofing needs. Quick questions to help us prepare: Are we talking a full replacement or specific damage to an area? And what part of Houston Metro are you in? We want to make sure you're in our service zone before we schedule.</div>
+            <div class="email-preview">
+              <div class="email-header">
+                <div class="email-header-row"><span class="email-header-label">From</span><span class="email-header-value">Peak Performance Roofing</span></div>
+                <div class="email-header-row"><span class="email-header-label">To</span><span class="email-header-value">Homeowner</span></div>
               </div>
-            </div>
-            
-          
-        </div>
-
-      </div>
-      
-      <div class="journey-step ">
-
-        <!-- Homeowner Side -->
-        <div class="journey-side journey-side--homeowner">
-          <div class="journey-label">Homeowner Experience</div>
-          <span class="journey-time">Hour 6-12</span>
-          <h3 class="journey-title">Urgency Assessment & Scheduling</h3>
-          <p class="journey-description">Determine priority level and book inspection</p>
-        </div>
-
-        <!-- Business Side -->
-        <div class="journey-side journey-side--business">
-          <div class="journey-label">Peak Performance Roofing Response</div>
-          <span class="journey-time">Hour 6-12</span>
-          <h3 class="journey-title">Urgency Assessment & Scheduling</h3>
-
-          
-            
-            <div class="conversation-thread">
-              <div class="conversation-bubble conversation-bubble--outgoing">
-                <div class="bubble-content">One more question: Is there active leaking inside the home right now? Was this from recent storm damage or wear over time? We've got inspection slots open tomorrow and Friday in Houston Metro. Want me to reserve one for you? Here's our link: [link]</div>
+              <div class="email-subject-row">
+                <div class="email-subject">We received your roofing request</div>
               </div>
+              <div class="email-body">Hi, thank you for reaching out to Peak Performance Roofing. We've received your request and someone from our team will be in touch with you shortly.<br><br>We look forward to speaking with you soon.<br><br>The Peak Performance Roofing Team</div>
             </div>
-            
-          
+          </div>
         </div>
-
       </div>
-      
-      <div class="journey-step ">
+    </div>
 
-        <!-- Homeowner Side -->
-        <div class="journey-side journey-side--homeowner">
-          <div class="journey-label">Homeowner Experience</div>
-          <span class="journey-time">Day 1-2</span>
-          <h3 class="journey-title">Reminder Touch</h3>
-          <p class="journey-description">Catch those who got busy and forgot to respond</p>
+    <!-- ROW 3: Hour 1-2 — TEXT -->
+    <div class="journey-row zone-followup">
+      <div class="journey-cell">
+        <div class="journey-timestamp">Hour 1 to 2</div>
+        <div class="journey-event-title">Lead stays warm</div>
+        <div class="journey-event">Team is still on jobs. This keeps the homeowner engaged while they work to get to them.</div>
+      </div>
+      <div class="journey-cell">
+        <div class="journey-timestamp">Hour 1 to 2</div>
+        <div class="thread">
+          <div class="bubble-row out">
+            <div class="bubble out">Hey, we're a little tied up at the moment but we haven't forgotten you. A member of our team will be reaching out to you shortly.</div>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <!-- Business Side -->
-        <div class="journey-side journey-side--business">
-          <div class="journey-label">Peak Performance Roofing Response</div>
-          <span class="journey-time">Day 1-2</span>
-          <h3 class="journey-title">Reminder Touch</h3>
+    <!-- ROW 4: Hour 3-4 — EMAIL -->
+    <div class="journey-row zone-followup">
+      <div class="journey-cell">
+        <div class="journey-timestamp">Hour 3 to 4</div>
+        <div class="journey-event-title">Second touchpoint lands</div>
+        <div class="journey-event">Formal follow-up keeps Peak Performance Roofing present while the homeowner waits.</div>
+      </div>
+      <div class="journey-cell">
+        <div class="journey-timestamp">Hour 3 to 4</div>
+        <div class="email-wrap">
+          <div class="email-tag">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            via email
+          </div>
+          <div class="email-preview">
+            <div class="email-header">
+              <div class="email-header-row"><span class="email-header-label">From</span><span class="email-header-value">Peak Performance Roofing</span></div>
+              <div class="email-header-row"><span class="email-header-label">To</span><span class="email-header-value">Homeowner</span></div>
+            </div>
+            <div class="email-subject-row">
+              <div class="email-subject">Following up on your roofing request</div>
+            </div>
+            <div class="email-body">Hi, we wanted to follow up on your roofing request. We have availability in the Houston Metro area and someone from our team will be reaching out to you directly.<br><br>If you need anything in the meantime, feel free to reply to this email.<br><br>The Peak Performance Roofing Team</div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-          
-            
-            <div class="message-preview">
-              <div class="message-preview-header">✉️ Email</div>
-              <div class="message-preview-content message-preview-email">
-                <div class="email-subject">Quick note from Peak Performance Roofing</div>
-                <div class="email-body">Hey, just making sure this didn't get buried. Still need that roof looked at? We've been handling storm damage in Houston Metro for years and can usually get an inspector out within 48 hours. Happy to answer any questions.</div>
+    <!-- ROW 5: Day 1 evening — TEXT -->
+    <div class="journey-row zone-followup">
+      <div class="journey-cell">
+        <div class="journey-timestamp">Day 1, Evening</div>
+        <div class="journey-event-title">Follow-up text</div>
+        <div class="journey-event">Team has attempted to call. This keeps the lead warm for homeowners who missed the call or got busy.</div>
+      </div>
+      <div class="journey-cell">
+        <div class="journey-timestamp">Day 1, Evening</div>
+        <div class="thread">
+          <div class="bubble-row out">
+            <div class="bubble out">Hey, still need that roof looked at? We have availability tomorrow.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROW 6: Day 2 — EMAIL -->
+    <div class="journey-row zone-followup">
+      <div class="journey-cell">
+        <div class="journey-timestamp">Day 2</div>
+        <div class="journey-event-title">Follow-up email</div>
+        <div class="journey-event">Keeps the door open and makes it easy for the homeowner to re-engage when they're ready.</div>
+      </div>
+      <div class="journey-cell">
+        <div class="journey-timestamp">Day 2</div>
+        <div class="email-wrap">
+          <div class="email-tag">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            via email
+          </div>
+          <div class="email-preview">
+            <div class="email-header">
+              <div class="email-header-row"><span class="email-header-label">From</span><span class="email-header-value">Peak Performance Roofing</span></div>
+              <div class="email-header-row"><span class="email-header-label">To</span><span class="email-header-value">Homeowner</span></div>
+            </div>
+            <div class="email-subject-row">
+              <div class="email-subject">Still available to help with your roof</div>
+            </div>
+            <div class="email-body">Hi, we just wanted to make sure our messages didn't get buried. We still have availability this week in Houston Metro and would love to help.<br><br>Feel free to reply here if you'd like to connect.<br><br>The Peak Performance Roofing Team</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROW 7: Day 3+ — Final TEXT -->
+    <div class="journey-row zone-followup">
+      <div class="journey-cell">
+        <div class="journey-timestamp">Day 3+</div>
+        <div class="journey-event-title">Last check-in</div>
+        <div class="journey-event">Final touch. Finds out if they still need help or have already moved on. Either way, the lead is resolved.</div>
+      </div>
+      <div class="journey-cell">
+        <div class="journey-timestamp">Day 3+</div>
+        <div class="thread">
+          <div class="bubble-row out">
+            <div class="bubble out">Hey, last follow up. Still need help with your roof? If you've already taken care of it, no worries at all.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ZONE DIVIDER: Booking -->
+    <div class="zone-divider">
+      <div class="zone-divider-line"></div>
+      <div class="zone-divider-label">Appointment booked</div>
+      <div class="zone-divider-line"></div>
+    </div>
+
+    <!-- ROW 8: Positive reply — team takes over -->
+    <div class="journey-row booked zone-booking">
+      <div class="journey-cell">
+        <div class="journey-timestamp now">Any point</div>
+        <div class="journey-event-title">Homeowner replies with interest</div>
+        <div class="journey-event">Sequence stops. Team picks up the conversation with full context and closes the booking on the call.</div>
+      </div>
+      <div class="journey-cell">
+        <div class="journey-timestamp now">Any point</div>
+        <div class="thread">
+          <div class="bubble-row out">
+            <div class="bubble out">Perfect, we'll get that sorted for you. Someone from Peak Performance Roofing will be calling you shortly.</div>
+          </div>
+          <div class="thread-meta">Team takes over</div>
+          <div class="booked-badge"><span class="booked-dot"></span>Handed off</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROW 9: Appointment confirmed -->
+    <div class="journey-row booked zone-booking">
+      <div class="journey-cell">
+        <div class="journey-timestamp now">Appointment confirmed</div>
+        <div class="journey-event-title">Job on the calendar</div>
+        <div class="journey-event">Team calls, confirms the details, and books the appointment. The homeowner has a time, a name, and knows exactly what to expect. Reminder sequence fires automatically from here.</div>
+      </div>
+      <div class="journey-cell">
+        <div class="journey-timestamp now">Appointment confirmed</div>
+        <div class="thread">
+          <div class="bubble-row out">
+            <div class="bubble out">Hey, it's the team at Peak Performance Roofing. You're all booked for [date] at [time]. We'll see you then.</div>
+          </div>
+          <div class="email-wrap" style="margin-top:10px">
+            <div class="email-tag">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              confirmation email, sent simultaneously
+            </div>
+            <div class="email-preview">
+              <div class="email-header">
+                <div class="email-header-row"><span class="email-header-label">From</span><span class="email-header-value">Peak Performance Roofing</span></div>
+                <div class="email-header-row"><span class="email-header-label">To</span><span class="email-header-value">Homeowner</span></div>
               </div>
-            </div>
-            
-          
-        </div>
-
-      </div>
-      
-      <div class="journey-step ">
-
-        <!-- Homeowner Side -->
-        <div class="journey-side journey-side--homeowner">
-          <div class="journey-label">Homeowner Experience</div>
-          <span class="journey-time">Day 3+</span>
-          <h3 class="journey-title">Final Check-In</h3>
-          <p class="journey-description">Last touch before lead goes cold</p>
-        </div>
-
-        <!-- Business Side -->
-        <div class="journey-side journey-side--business">
-          <div class="journey-label">Peak Performance Roofing Response</div>
-          <span class="journey-time">Day 3+</span>
-          <h3 class="journey-title">Final Check-In</h3>
-
-          
-            
-            <div class="conversation-thread">
-              <div class="conversation-bubble conversation-bubble--outgoing">
-                <div class="bubble-content">Last check on your roofing estimate. If you still need an inspection, here's a direct link to book with Peak Performance Roofing: [link]. If you've already handled it, no worries at all.</div>
+              <div class="email-subject-row">
+                <div class="email-subject">Your appointment with Peak Performance Roofing is confirmed</div>
               </div>
+              <div class="email-body">Hi, your roofing appointment is confirmed for [date] at [time]. Our crew member will be with you at that time.<br><br>If anything changes before then, feel free to reply to this email and we'll get it sorted.<br><br>We look forward to seeing you.<br><br>The Peak Performance Roofing Team</div>
             </div>
-            
-          
+          </div>
         </div>
-
       </div>
-      
-      <div class="journey-step journey-step--highlight">
+    </div>
 
-        <!-- Homeowner Side -->
-        <div class="journey-side journey-side--homeowner">
-          <div class="journey-label">Homeowner Experience</div>
-          <span class="journey-time">Any Point</span>
-          <h3 class="journey-title">Estimate Booked</h3>
-          <p class="journey-description">When homeowner responds, booking flow triggers automatically</p>
-        </div>
 
-        <!-- Business Side -->
-        <div class="journey-side journey-side--business">
-          <div class="journey-label">Peak Performance Roofing Response</div>
-          <span class="journey-time">Any Point</span>
-          <h3 class="journey-title">Estimate Booked</h3>
+    <!-- ZONE DIVIDER: Reminders -->
+    <div class="zone-divider">
+      <div class="zone-divider-line"></div>
+      <div class="zone-divider-label">Automated reminders</div>
+      <div class="zone-divider-line"></div>
+    </div>
 
-          
-            
-            <div class="message-preview">
-              <div class="message-preview-content message-preview-confirm">
-                ✓ Your inspection is confirmed for [Date/Time]. Our estimator will assess the damage and provide a detailed quote on-site. We'll send a reminder the day before.
+    <!-- ROW 10: 24-hour reminder -->
+    <div class="journey-row zone-reminder">
+      <div class="journey-cell">
+        <div class="journey-timestamp">24 hours before</div>
+        <div class="journey-event-title">24-hour reminder</div>
+        <div class="journey-event">Homeowner gets a heads-up the day before. Enough time to reschedule if needed, reduces no-shows significantly.</div>
+      </div>
+      <div class="journey-cell">
+        <div class="journey-timestamp">24 hours before</div>
+        <div class="thread">
+          <div class="bubble-row out">
+            <div class="bubble out">Hey, just a reminder — your appointment with Peak Performance Roofing is tomorrow at [time]. See you then!</div>
+          </div>
+          <div class="email-wrap" style="margin-top:10px">
+            <div class="email-tag">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              via email, sent simultaneously
+            </div>
+            <div class="email-preview">
+              <div class="email-header">
+                <div class="email-header-row"><span class="email-header-label">From</span><span class="email-header-value">Peak Performance Roofing</span></div>
+                <div class="email-header-row"><span class="email-header-label">To</span><span class="email-header-value">Homeowner</span></div>
               </div>
+              <div class="email-subject-row">
+                <div class="email-subject">Reminder: Your appointment tomorrow at [time]</div>
+              </div>
+              <div class="email-body">Hi, just a friendly reminder that your roofing appointment with Peak Performance Roofing is scheduled for tomorrow at [time].<br><br>If you need to make any changes, please reply to this email as soon as possible so we can adjust the schedule.<br><br>We look forward to seeing you tomorrow.<br><br>The Peak Performance Roofing Team</div>
             </div>
-            
-          
+          </div>
         </div>
-
       </div>
-      
+    </div>
+
+    <!-- ROW 11: 2-hour reminder -->
+    <div class="journey-row zone-reminder">
+      <div class="journey-cell">
+        <div class="journey-timestamp">2 hours before</div>
+        <div class="journey-event-title">2-hour reminder</div>
+        <div class="journey-event">The most effective no-show prevention. Homeowner is thinking about their day and knows to be home. Arrival window confirmed.</div>
+      </div>
+      <div class="journey-cell">
+        <div class="journey-timestamp">2 hours before</div>
+        <div class="thread">
+          <div class="bubble-row out">
+            <div class="bubble out">Hey, your Peak Performance Roofing crew member is on their way — see you in about 2 hours at [time]. Let us know if you have any questions!</div>
+          </div>
+          <div class="email-wrap" style="margin-top:10px">
+            <div class="email-tag">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              via email, sent simultaneously
+            </div>
+            <div class="email-preview">
+              <div class="email-header">
+                <div class="email-header-row"><span class="email-header-label">From</span><span class="email-header-value">Peak Performance Roofing</span></div>
+                <div class="email-header-row"><span class="email-header-label">To</span><span class="email-header-value">Homeowner</span></div>
+              </div>
+              <div class="email-subject-row">
+                <div class="email-subject">Your Peak Performance Roofing appointment is in 2 hours</div>
+              </div>
+              <div class="email-body">Hi, your roofing appointment with Peak Performance Roofing is coming up at [time] today. Please make sure someone is available to provide access.<br><br>If you have any last-minute questions, feel free to reply to this email.<br><br>We'll see you shortly.<br><br>The Peak Performance Roofing Team</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- REALITY CHECK STATS -->
+  <div class="section">
+    <div class="section-eyebrow">What the numbers say</div>
+    <div class="section-title">Roofing response by the numbers</div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">70%</div>
+        <div class="stat-label">of roofing jobs are won in the first 24 hours after a storm</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">8%</div>
+        <div class="stat-label">close rate when a weekend inquiry waits until Monday, vs 38% same day</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">27%</div>
+        <div class="stat-label">of calls go unanswered during peak storm periods. Each one is a $5,000 to $15,000 job walking out the door</div>
+      </div>
     </div>
   </div>
 
-  <!-- Reality Check Section -->
-  
-  <div class="reality-section">
-    <h2 class="reality-title">What We're Seeing in Roofing</h2>
-    <div class="reality-grid">
-      
-      <div class="reality-item">
-        <span class="reality-text">After a storm, 70% of jobs go to companies that respond in the first 24 hours (NRCA + GAF)</span>
-      </div>
-      
-      <div class="reality-item">
-        <span class="reality-text">Homeowners contact 5-10 roofers on average. First to provide estimate wins 60% of the time</span>
-      </div>
-      
-      <div class="reality-item">
-        <span class="reality-text">Weekend storm inquiries: 8% close rate if they wait until Monday vs 38% for instant response</span>
-      </div>
-      
-      <div class="reality-item">
-        <span class="reality-text">43% of roofing leads nationwide never get contacted at all (CallRail)</span>
-      </div>
-      
-      <div class="reality-item">
-        <span class="reality-text">Average roofer response time: 3-5 days. By then, 85% of homeowners have already booked</span>
-      </div>
-      
-      <div class="reality-item">
-        <span class="reality-text">80% of conversions happen after 5+ follow-ups. Most roofers quit after 1-2 attempts</span>
-      </div>
-      
-    </div>
-  </div>
-  
-
-  <!-- Footer -->
+  <!-- FOOTER -->
   <div class="footer">
-    <p class="footer-text">This is what the flow looks like for Peak Performance Roofing. The actual timing and messages would be tailored to how you already operate.</p>
+    This shows what the flow looks like for Peak Performance Roofing. Every inquiry gets the same treatment, regardless of when it comes in or how busy the day is.
   </div>
+
+</div>
 </body>
 </html>
